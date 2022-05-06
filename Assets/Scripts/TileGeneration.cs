@@ -14,20 +14,10 @@ namespace Crossyroad {
         public int lineBehind = 5;
 
 
-        public List<T> CreateTile<T>() where T : Tile
-        {
-            List<T> tiles = new List<T>();
-            for (int i = 0; i < 20; i++)
-            {
-                tiles.Add(GetTile<Tile>() as T);
-            }
-            return tiles;
-        }
-
         public T GetTile<T>() where T: Tile
         {
-            T line = tiles[Random.Range(0, tiles.Count)] as T;
-            
+            T line = null;
+            line = tiles[Random.Range(0, tiles.Count)] as T;
             return line;
         }
 

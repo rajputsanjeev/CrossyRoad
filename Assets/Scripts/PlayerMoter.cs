@@ -56,6 +56,11 @@ namespace Crossyroad
             m_current = new Vector3(Mathf.Round(m_transform.position.x), Mathf.Round(m_transform.position.y), Mathf.Round(m_transform.position.z));
         }
 
+        public bool IsMoving
+        {
+            get { return moving; }
+        }
+
         public void Move()
         {
             if (moving)

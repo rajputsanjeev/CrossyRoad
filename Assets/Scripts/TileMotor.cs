@@ -10,8 +10,8 @@ namespace Crossyroad
         private Transform playerTransform;
         public Transform spawnPoint;
         private TileGeneration tileGeneration;
-        private Dictionary<int, GameObject> lines = new Dictionary<int, GameObject>();
-
+        public List<GameObject> objectPool = new List<GameObject>();
+        
         public TileMotor(Transform transform , TileGeneration tileGeneration , Transform spawnPoint)
         {
             this.playerTransform = transform;
@@ -19,20 +19,29 @@ namespace Crossyroad
             this.spawnPoint = spawnPoint;
         }
 
-        public void SpawnTile()
+        public void SpawnTile(IObjectPool IobjectPool)
         {
-            Debug.Log("Distance "+Vector3.Distance(spawnPoint.position, playerTransform.position));
-
-            if(Vector3.Distance(spawnPoint.position, playerTransform.position) > 10f && Vector3.Distance(spawnPoint.position, playerTransform.position) < 50f)
+            Debug.Log("objectPool.Count " + objectPool.Count);
+            if(objectPool.Count > 0)
             {
-               for(int i = 0; i < 5; i++)
+                if (Vector3.Distance(spawnPoint.position, playerTransform.position) > 10f && Vector3.Distance(spawnPoint.position, playerTransform.position) < 100f)
                 {
                     Tile tile = tileGeneration.GetTile<Tile>();
-                    GameObject gameObject = tileGeneration.SpawnTile(tile);
-                    gameObject.transform.position = spawnPoint.position;
-                    gameObject.transform.localScale = new Vector3(1, 1, 3);
-                    spawnPoint.position = new Vector3(0,0 ,spawnPoint.position.z + 3);
+                    GameObject tileObject = tileGeneration.SpawnTile(tile);
+                    tileObject.transform.position = spawnPoint.position;
+                    tileObject.transform.localScale = new Vector3(1, 1, 3);
+                    spawnPoint.position = new Vector3(0, 0, spawnPoint.position.z + 3);
+                    tileObject.GetComponent<Platform>().SetPlayerTransform(playerTransform, IobjectPool);
                 }
+            }
+            else
+            {
+                int randomTile =  Random.Range(0,objectPool.Count-1);
+                GameObject tileObject = objectPool[randomTile];
+                tileObject.transform.position = spawnPoint.position;
+                tileObject.transform.localScale = new Vector3(1, 1, 3);
+                spawnPoint.position = new Vector3(0, 0, spawnPoint.position.z + 3);
+                objectPool.RemoveAt(randomTile);
             }
         }
     }

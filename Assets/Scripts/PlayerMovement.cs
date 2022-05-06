@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMoter moter;
     private IPlayerInput playerInput;
     [SerializeField] private Rigidbody rigidbody;
-
+    public bool IsMoving => moter.IsMoving;
+    public string Direction => moter.MoveDirection;
+  
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -16,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Ismoving "+IsMoving);
         moter.SetCurrentPosition();
         playerInput.ReadInput(transform.position,setting);
         playerInput.Calculate(transform.position,Input.mousePosition);

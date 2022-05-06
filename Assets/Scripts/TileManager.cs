@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Crossyroad;
 
-public class TileManager : MonoBehaviour
+public class TileManager : MonoBehaviour , IObjectPool
 {
     public TileGeneration tileGeneration;
-    public List<Tile> tiles = new List<Tile>();
     public Transform player;
     public Transform spawnPoint;
     public TileMotor tileMotor;
-
 
     private void Awake()
     {
@@ -19,6 +17,11 @@ public class TileManager : MonoBehaviour
 
     public void Update()
     {
-        tileMotor.SpawnTile();
+        tileMotor.SpawnTile(this);
+    }
+
+    public void AddtoPool(GameObject gameObject)
+    {
+        tileMotor.objectPool.Add(gameObject);
     }
 }

@@ -104,6 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412714}
+  - component: {fileID: 5867151000428391702}
   m_Layer: 0
   m_Name: RoadLine
   m_TagString: Untagged
@@ -128,6 +129,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5867151000428391702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e84b3b5cb1e7c44e93fc98aa2fb0d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: 2
+  playerTransform: {fileID: 0}
 --- !u!1 &184340
 GameObject:
   m_ObjectHideFlags: 0
