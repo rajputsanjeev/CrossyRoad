@@ -6,7 +6,10 @@ namespace Crossyroad
 {
     public class Water : Platform
     {
-       
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+        }
     }
 
 }

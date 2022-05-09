@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Ismoving "+IsMoving);
         moter.SetCurrentPosition();
         playerInput.ReadInput(transform.position,setting);
         playerInput.Calculate(transform.position,Input.mousePosition);

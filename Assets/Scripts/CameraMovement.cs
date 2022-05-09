@@ -8,10 +8,12 @@ namespace Crossyroad
         public CameraMoter cameraMoter;
         public Transform playerTransform;
         public CameraSetting cameraSetting;
+        public Vector3 initialOffset;
 
         public void Start()
         {
-            cameraMoter = new CameraMoter(playerTransform, transform, cameraSetting, playerTransform.gameObject.GetComponent<PlayerMovement>());
+            cameraMoter = new CameraMoter(playerTransform, transform, cameraSetting, playerTransform.gameObject.GetComponent<PlayerMovement>(), initialOffset);
+            cameraMoter.InitPos();
         }
 
         public void Update()

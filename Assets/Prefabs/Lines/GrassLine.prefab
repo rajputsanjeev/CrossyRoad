@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 471664}
-  - component: {fileID: 1922951195343793024}
+  - component: {fileID: -1577229893456318847}
   m_Layer: 0
   m_Name: GrassLine
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 126440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children:
   - {fileID: 472710}
   - {fileID: 403702}
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1922951195343793024
+--- !u!114 &-1577229893456318847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +43,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 126440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 226d573dc1c607c42998f4f02a7ac23e, type: 3}
+  m_Script: {fileID: 11500000, guid: f9687aa6bd142f64fb8d2b9cb8328fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 0
+  minPosition: {x: -8, y: 1, z: 0}
+  maxPosition: {x: 8, y: 1, z: 0}
+  gridSize: {x: 1, y: 1, z: 3}
+  density: 0.12
+  relative: 1
+  destroyWhenDestroyed: 1
+  tileList:
+  - {fileID: 137330, guid: 332aaec2dfb6c32489834c91c1c7c3fc, type: 3}
+  - {fileID: 117376, guid: f454750896077254c85812253d5dc4e2, type: 3}
 --- !u!1 &126894
 GameObject:
   m_ObjectHideFlags: 0

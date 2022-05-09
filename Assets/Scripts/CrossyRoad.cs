@@ -11,6 +11,8 @@ namespace Crossyroad
         CAR,
         WATER
     }
+    public enum Direction { LEFT = -1, RIGHT = 1 };
+
 
 
 }

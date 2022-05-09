@@ -15,10 +15,24 @@ MonoBehaviour:
   tiles:
   - tileType: 0
     tileObject: {fileID: 126440, guid: d2853a44e65cddc41a6ddfcaedd54ae3, type: 3}
-    tileList: []
+    tileList:
+    - {fileID: 137330, guid: 332aaec2dfb6c32489834c91c1c7c3fc, type: 3}
+    - {fileID: 117376, guid: f454750896077254c85812253d5dc4e2, type: 3}
   - tileType: 2
     tileObject: {fileID: 177662, guid: d3af063da7e4fc643ae1751d131fcdf8, type: 3}
-    tileList: []
+    tileList:
+    - {fileID: 168452, guid: 01256546b6844bb41acc699f38a541af, type: 3}
+    - {fileID: 106230, guid: 66e90d418d4265348945d4acb338fc31, type: 3}
+    - {fileID: 168144, guid: d1d4dedfa9ac7e848b8fd101896c18a0, type: 3}
+    - {fileID: 164652, guid: 9bd1b27d5f778ed4a895df3cddc07424, type: 3}
+    - {fileID: 141488, guid: 8748feac88fc15d4ca01666a807ac1ef, type: 3}
+    - {fileID: 148512, guid: 92072655e33dcad4081f973a35e6a06c, type: 3}
+    - {fileID: 135068, guid: 60aa64213e6a4744293d052e98fb6bb3, type: 3}
+    - {fileID: 146224, guid: be3bc177c326ce549b3029268bf14d12, type: 3}
+    - {fileID: 183302, guid: 8fabdd1a6ebcf88458e10661011b042b, type: 3}
   - tileType: 3
     tileObject: {fileID: 186100, guid: c458ee52e60e32643acf769053339dd7, type: 3}
     tileList: []
+  minZ: 3
+  lineAhead: 10
+  lineBehind: 5

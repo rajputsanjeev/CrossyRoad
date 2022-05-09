@@ -6,7 +6,7 @@ namespace Crossyroad
 {
     public class CameraMoter
     {
-        public bool moving = false;
+        public bool moving = true;
         private Transform playerTransform;
         private Transform cameraTransform;
         private PlayerMovement playerMovement;
@@ -14,34 +14,32 @@ namespace Crossyroad
         private Vector3 offset;
         private Vector3 initialOffset;
 
-        public CameraMoter(Transform playerTransform, Transform cameraTransform , CameraSetting cameraSetting , PlayerMovement playerMovementScript)
+        public CameraMoter(Transform playerTransform, Transform cameraTransform , CameraSetting cameraSetting , PlayerMovement playerMovementScript , Vector3 initialOffset)
         {
             this.playerTransform = playerTransform;
             this.cameraTransform = cameraTransform;
             this.cameraSetting = cameraSetting; 
             this.playerMovement = playerMovementScript;
-            initialOffset = new Vector3(2.5f, 10.0f, -7.5f);
-            offset = initialOffset;
+            this.initialOffset = initialOffset; 
+            offset = this.initialOffset;
+        }
+
+        public void InitPos()
+        {
+            cameraTransform.position = initialOffset;
         }
 
         public void UpdateCameraMotion()
         {
             if (moving)
             {
+                //Debug.Log("Moving");
                 Vector3 playerPosition = playerTransform.position;
-                cameraTransform.position = new Vector3(playerPosition.x, 0, Mathf.Max(cameraSetting.minZ, playerPosition.z)) + offset;
+                cameraTransform.position = Vector3.Lerp(cameraTransform.position, playerPosition + offset , Time.deltaTime);
 
                 // Increase z over time if moving.
-                offset.z += cameraSetting.speedIncrementZ * Time.deltaTime;
+                //offset.z += cameraSetting.speedIncrementZ * Time.deltaTime;
 
-                // Increase/decrease z when player is moving south/north.
-                if (playerMovement.IsMoving)
-                {
-                    if (playerMovement.Direction == "north")
-                    {
-                        offset.z -= cameraSetting.speedOffsetZ * Time.deltaTime;
-                    }
-                }
             }
         }
     }

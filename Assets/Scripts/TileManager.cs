@@ -8,16 +8,21 @@ public class TileManager : MonoBehaviour , IObjectPool
     public TileGeneration tileGeneration;
     public Transform player;
     public Transform spawnPoint;
+    public Transform parent;
     public TileMotor tileMotor;
 
     private void Awake()
     {
-        tileMotor = new TileMotor(player, tileGeneration, spawnPoint);
+        tileMotor = new TileMotor(player, tileGeneration, spawnPoint, parent);
+        for (int i = 0; i < 30; i++)
+        {
+            tileMotor.SpawnTile(this, 0f, 100f);
+        }
     }
 
     public void Update()
     {
-        tileMotor.SpawnTile(this);
+        tileMotor.SpawnTileFromPool(0f, 100f);
     }
 
     public void AddtoPool(GameObject gameObject)

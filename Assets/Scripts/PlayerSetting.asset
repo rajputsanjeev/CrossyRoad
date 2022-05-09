@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ead6f2c731e97174bafa0202c3801dfe, type: 3}
-  m_Name: PlayerStting
+  m_Name: PlayerSetting
   m_EditorClassIdentifier: 
   timeForMove: 0.2
   jumpHeight: 1
@@ -18,3 +18,4 @@ MonoBehaviour:
   maxX: 4
   leftRotation: -45
   rightRotation: 90
+  elapsedTime: 0.20383349

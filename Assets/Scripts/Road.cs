@@ -6,7 +6,10 @@ namespace Crossyroad
 {
     public class Road : Platform
     {
-       
+      protected override void OnEnable()
+        {
+            base.OnEnable();
+        }
     }
 }
 
