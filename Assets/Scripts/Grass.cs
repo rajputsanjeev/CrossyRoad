@@ -49,6 +49,23 @@ namespace Crossyroad
                 }
             }
         }
+        private void Update()
+        {
+            if (playerTransform == null)
+                return;
+
+            if (transform.position.z <= playerTransform.position.z - 20f)
+            {
+                gameObject.SetActive(false);
+
+                for (int i = 0; i < generatedObjects.Count; i++)
+                {
+                    generatedObjects[i].SetActive(false);
+                }
+
+                objectPoolLisner.AddtoPool(gameObject);
+            }
+        }
 
         private void OnDisable()
         {

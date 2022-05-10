@@ -18,4 +18,5 @@ MonoBehaviour:
   maxX: 4
   leftRotation: -45
   rightRotation: 90
-  elapsedTime: 0.20383349
+  elapsedTime: 0.20268369
+  xJumpDistance: 3

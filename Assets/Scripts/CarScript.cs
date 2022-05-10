@@ -19,7 +19,8 @@ namespace Crossyroad
             {
                 Vector3 scale = other.gameObject.transform.localScale;
                 other.gameObject.transform.localScale = new Vector3(scale.x, scale.y * 0.1f, scale.z);
-                other.gameObject.SendMessage("GameOver");
+                //other.gameObject.SendMessage("GameOver");
+                PlayerMovement.gameOverEvent?.Invoke();
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Crossyroad
         private IObjectPool objectPoolLisner;
         private Transform playerTransform;
         public List<GameObject> tileList = new List<GameObject>();
-        public bool randomizeValues = false;
+        public bool randomizeValues = true;
         public Direction direction;
         public float speed = 2.0f;
         public float interval = 6.0f;
@@ -25,6 +25,11 @@ namespace Crossyroad
         }
 
         protected virtual void OnEnable()
+        {
+            Debug.Log("onenable");
+            GetRandomValue();
+        }
+        private void GetRandomValue()
         {
             if (randomizeValues)
             {
@@ -48,13 +53,10 @@ namespace Crossyroad
             var position = transform.position + new Vector3(direction == Direction.LEFT ? rightX : leftX, 0.6f, 0);
             var objec = (GameObject)Instantiate(tileList[Random.Range(0, tileList.Count - 1)], position, Quaternion.identity);
             objec.GetComponent<Movement>().speedX = (int)direction * speed;
-            objec.GetComponent<Movement>().SetDirection(direction,leftX,rightX,this);
-
-            if (direction < 0)
-                objec.transform.rotation = Quaternion.Euler(-90, 0, -90);
-            else
-                objec.transform.rotation = Quaternion.Euler(-90, 0, 90);
-
+             Movement movement = objec.GetComponent<Movement>();
+            movement.speedX = (int)direction * speed;
+            movement.SetDirection(direction,leftX,rightX,this);
+            movement.SetRoation();
             generatedObjects.Add(objec);
         }
 
@@ -63,18 +65,16 @@ namespace Crossyroad
             if (generatedObjects.Count == 0)
                 return;
 
+            GetRandomValue();
+
             // TODO extract 0.375f and -0.5f to outside -- probably along with genericization
             var position = transform.position + new Vector3(direction == Direction.LEFT ? rightX : leftX, 0.6f, 0);
             GameObject obj = generatedObjects[Random.Range(0, generatedObjects.Count - 1)];
             obj.transform.position  = position;
-            obj.GetComponent<Movement>().speedX = (int)direction * speed;
-            obj.GetComponent<Movement>().SetDirection(direction, leftX, rightX, this);
-
-            if (direction < 0)
-                obj.transform.rotation = Quaternion.Euler(-90, 0, -90);
-            else
-                obj.transform.rotation = Quaternion.Euler(-90, 0, 90);
-
+            Movement movement = obj.GetComponent<Movement>();
+            movement.speedX = (int)direction * speed;
+            movement.SetDirection(direction, leftX, rightX, this);
+            movement.SetRoation();
             obj.SetActive(true);
         }
 
@@ -87,6 +87,10 @@ namespace Crossyroad
             if (transform.position.z <= playerTransform.position.z - 20f)
             {
                 gameObject.SetActive(false);
+                for (int i = 0; i < generatedObjects.Count; i++)
+                {
+                    generatedObjects[i].SetActive(false);
+                }
                 objectPoolLisner.AddtoPool(gameObject);
             }
         }

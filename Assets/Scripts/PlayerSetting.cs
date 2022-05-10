@@ -15,6 +15,7 @@ namespace Crossyroad {
         public float leftRotation = -45.0f;
         public float rightRotation = 90.0f;
         public float elapsedTime = 0f;
+        public float xJumpDistance = 1.5f;
     }
 
 

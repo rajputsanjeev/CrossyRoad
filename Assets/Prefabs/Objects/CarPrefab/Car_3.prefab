@@ -109,3 +109,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedX: 0
+  direction: 0
+  leftX: 0
+  rightX: 0
+  rotationFixed: 2
+  quaternion: {x: -90, y: 0, z: 0, w: 0}
+  leftDir: -90
+  rightDir: 90

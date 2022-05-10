@@ -9,6 +9,13 @@ namespace Crossyroad
         public Vector3 initialPos { get; private set; }
         public Vector3 target { get; set; }
 
+        private float xJumpDistance;
+
+        public PlayerInput(float xJumpDistance)
+        {
+            this.xJumpDistance = xJumpDistance; 
+        }
+
         public void ReadInput(Vector3 init, PlayerSetting playerSetting)
         {
             // Handle mouse click
@@ -20,21 +27,21 @@ namespace Crossyroad
 
             if (Input.GetKeyDown(KeyCode.W))
             {
-                target = new Vector3(0, 0, 1);
+                target = new Vector3(0, 0, xJumpDistance);
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                target = new Vector3(0, 0, -1);
+                target = new Vector3(0, 0, -xJumpDistance);
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
                 if (Mathf.RoundToInt(init.x) > playerSetting.minX)
-                    target = new Vector3(-1, 0, 0);
+                    target = new Vector3(-xJumpDistance, 0, 0);
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 if (Mathf.RoundToInt(init.x) < playerSetting.maxX)
-                    target = new Vector3(1, 0, 0);
+                    target = new Vector3(xJumpDistance, 0, 0);
             }
 
         }
@@ -55,12 +62,12 @@ namespace Crossyroad
                         if (initialPos.x > finalPos.x)
                         {
                             Debug.Log("Left");
-                            target = new Vector3(-1, 0, 0);
+                            target = new Vector3(-xJumpDistance, 0, 0);
                         }
                         else
                         {
                             Debug.Log("Right");
-                            target = new Vector3(1, 0, 0);
+                            target = new Vector3(xJumpDistance, 0, 0);
                         }
                     }
                     else
@@ -68,18 +75,18 @@ namespace Crossyroad
                         if (initialPos.y > finalPos.y)
                         {
                             Debug.Log("Down");
-                            target = new Vector3(0, 0, -1);
+                            target = new Vector3(0, 0, -xJumpDistance);
                         }
                         else
                         {
                             Debug.Log("Up");
-                            target = new Vector3(0, 0, 1);
+                            target = new Vector3(0, 0, xJumpDistance);
                         }
                     }
                 }
                 else
                 {
-                    target = new Vector3(0, 0, 1);
+                    target = new Vector3(0, 0, xJumpDistance);
                 }
             }
         }

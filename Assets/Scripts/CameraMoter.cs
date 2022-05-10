@@ -6,7 +6,7 @@ namespace Crossyroad
 {
     public class CameraMoter
     {
-        public bool moving = true;
+        public bool moving => playerMovement.IsMoving;
         private Transform playerTransform;
         private Transform cameraTransform;
         private PlayerMovement playerMovement;
@@ -27,6 +27,8 @@ namespace Crossyroad
         public void InitPos()
         {
             cameraTransform.position = initialOffset;
+            Vector3 playerPosition = playerTransform.position;
+            cameraTransform.position =playerPosition + offset;
         }
 
         public void UpdateCameraMotion()
