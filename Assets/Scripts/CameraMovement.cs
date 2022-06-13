@@ -16,9 +16,10 @@ namespace Crossyroad
             cameraMoter.InitPos();
         }
 
-        public void Update()
+
+        public void LateUpdate()
         {
-            cameraMoter.UpdateCameraMotion();
+            cameraMoter.UpdateLateUpdate();
         }
     }
 

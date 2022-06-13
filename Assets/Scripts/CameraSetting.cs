@@ -8,7 +8,7 @@ namespace Crossyroad
     public class CameraSetting : ScriptableObject
     {
         public float minZ = 0.0f;
-        public float speedIncrementZ = 1.0f;
+        public float speedIncrementZ = 1.5f;
         public float speedOffsetZ = 4.0f;
     }
 

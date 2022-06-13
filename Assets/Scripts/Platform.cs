@@ -39,11 +39,7 @@ namespace Crossyroad
             }
         }
 
-        protected virtual void OnDisable()
-        {
-            
-        }
-
+       
         public virtual void Init()
         {
             if (tileList.Count == 0)

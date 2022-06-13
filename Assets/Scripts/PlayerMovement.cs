@@ -1,10 +1,15 @@
 using UnityEngine;
 using Crossyroad;
 using UnityEngine.SceneManagement;
+using Photon.Chat;
+using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+
+public class PlayerMovement : MonoBehaviour , IPunObservable
 {
-  
+    [SerializeField] private PhotonView view => GetComponent<PhotonView>();
+
     [SerializeField]  private PlayerSetting setting;
     [SerializeField] private PlayerMoter moter;
     private IPlayerInput playerInput;
@@ -32,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!view.IsMine)
+            return;
+
+        Debug.Log("IsMoving " + IsMoving);
         moter.SetCurrentPosition();
         playerInput.ReadInput(transform.position,setting);
         playerInput.Calculate(transform.position,Input.mousePosition);
@@ -41,7 +50,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void GameOver()
     {
-        moter.IsMoving = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //moter.IsMoving = false;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+
     }
 }

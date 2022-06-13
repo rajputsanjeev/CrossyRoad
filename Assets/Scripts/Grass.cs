@@ -42,7 +42,8 @@ namespace Crossyroad
                         if (generate)
                         {
                             GameObject prefab = tileList[Random.Range(0, tileList.Count)];
-                            var o = (GameObject)Instantiate(prefab, relative ? transform.position + new Vector3(x, y, z) : new Vector3(x, y, z), Quaternion.identity);
+                            GameObject o = (GameObject)Instantiate(prefab, relative ? transform.position + new Vector3(x, y, z) : new Vector3(x, y, z), Quaternion.identity);
+                            o.transform.SetParent(gameObject.transform);
                             generatedObjects.Add(o);
                         }
                     }
@@ -57,19 +58,8 @@ namespace Crossyroad
             if (transform.position.z <= playerTransform.position.z - 20f)
             {
                 gameObject.SetActive(false);
-
-                for (int i = 0; i < generatedObjects.Count; i++)
-                {
-                    generatedObjects[i].SetActive(false);
-                }
-
                 objectPoolLisner.AddtoPool(gameObject);
             }
-        }
-
-        private void OnDisable()
-        {
-            
         }
      
     }
