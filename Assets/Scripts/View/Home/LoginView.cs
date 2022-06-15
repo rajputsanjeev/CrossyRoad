@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using ThirdPerson;
+using CrossyRoad;
 
 public class LoginView : MonoBehaviour
 {

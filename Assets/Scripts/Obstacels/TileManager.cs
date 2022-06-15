@@ -6,14 +6,14 @@ using Crossyroad;
 public class TileManager : MonoBehaviour , IObjectPool
 {
     public TileGeneration tileGeneration;
-    public Transform player;
+    public Transform playerTransform;
     public Transform spawnPoint;
     public Transform parent;
     public TileMotor tileMotor;
 
     private void Awake()
     {
-        tileMotor = new TileMotor(player, tileGeneration, spawnPoint, parent);
+        tileMotor = new TileMotor(playerTransform, tileGeneration, spawnPoint, parent);
         for (int i = 0; i < 30; i++)
         {
             tileMotor.SpawnTile(this, 0f, 100f);

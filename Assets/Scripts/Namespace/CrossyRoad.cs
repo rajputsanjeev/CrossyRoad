@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace ThirdPerson
+namespace CrossyRoad
 {
-
-
     public enum Panel
     {
         HOME, PLAYER_LIST, FINDING_OPPONENT, TYPED_LOBBY, CHALLENGE_REQUEST,

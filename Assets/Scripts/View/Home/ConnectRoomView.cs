@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace ThirdPerson.Views.Home
+namespace CrossyRoad.Views.Home
 {
     public class ConnectRoomView : View
     {

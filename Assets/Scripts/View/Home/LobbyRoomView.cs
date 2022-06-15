@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ThirdPerson.Photon
+namespace CrossyRoad.Photon
 {
     /// <summary>
     /// This class will update lobby view as player joins/leaves lobby.

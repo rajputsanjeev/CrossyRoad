@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 using Multiplayer;
 
-namespace ThirdPerson.Photon
+namespace CrossyRoad.Photon
 {
     public class LobbyRoomInfoController : Behaviour<LobbyRoomInfoView>      
     {

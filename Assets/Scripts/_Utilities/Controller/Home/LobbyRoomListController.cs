@@ -1,11 +1,11 @@
-﻿using ThirdPerson.Photon;
-using ThirdPerson.Views.Home;
+﻿using CrossyRoad.Photon;
+using CrossyRoad.Views.Home;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ThirdPerson.Controller.Home
+namespace CrossyRoad.Controller.Home
 {
     public class LobbyRoomListController : PhotonListener<List<RoomInfo>>
     {

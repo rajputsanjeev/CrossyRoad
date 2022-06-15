@@ -1,4 +1,4 @@
-﻿using ThirdPerson;
+﻿using CrossyRoad;
 
 using TMPro;
 using UnityEngine;

@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
-using ThirdPerson.Photon;
+using CrossyRoad.Photon;
 using Multiplayer;
 
-namespace ThirdPerson.Lobby
+namespace CrossyRoad.Lobby
 {
     public class CreateLobbyRoomView : UIPanelComponent
     {

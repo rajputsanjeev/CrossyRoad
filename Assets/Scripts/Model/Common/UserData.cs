@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-namespace ThirdPerson
+namespace CrossyRoad
 {
     /// <summary>
     /// This class stores all User Info of local player

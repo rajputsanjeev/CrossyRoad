@@ -1,5 +1,5 @@
-﻿using ThirdPerson;
-using ThirdPerson.Photon;
+﻿using CrossyRoad;
+using CrossyRoad.Photon;
 using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;

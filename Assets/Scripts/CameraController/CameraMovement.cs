@@ -5,21 +5,24 @@ namespace Crossyroad
 {
     public class CameraMovement: MonoBehaviour
     {
-        public CameraMoter cameraMoter;
+        protected CameraMoter cameraMoter;
         public Transform playerTransform;
         public CameraSetting cameraSetting;
         public Vector3 initialOffset;
 
-        public void Start()
+        public void Init()
         {
             cameraMoter = new CameraMoter(playerTransform, transform, cameraSetting, playerTransform.gameObject.GetComponent<PlayerMovement>(), initialOffset);
             cameraMoter.InitPos();
-        }
 
+            if (GameController.instance != null)
+                GameController.instance.cameraMovement = this;
+        }
 
         public void LateUpdate()
         {
-            cameraMoter.UpdateLateUpdate();
+            if(playerTransform != null)
+               cameraMoter.UpdateLateUpdate();
         }
     }
 

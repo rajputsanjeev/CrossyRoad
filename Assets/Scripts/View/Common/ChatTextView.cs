@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
-using ThirdPerson.Photon;
+using CrossyRoad.Photon;
 using Ediiie.Photon;
-using ThirdPerson;
+using CrossyRoad;
 
 public class ChatTextView : MonoBehaviour
 {

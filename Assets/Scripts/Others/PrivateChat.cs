@@ -1,4 +1,4 @@
-﻿using ThirdPerson;
+﻿using CrossyRoad;
 using Photon.Realtime;
 using System;
 using System.Collections;

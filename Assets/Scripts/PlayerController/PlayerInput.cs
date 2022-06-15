@@ -1,77 +1,94 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace CharacterController 
+namespace Crossyroad 
 {
-    public static class PlayerInput
+    public class PlayerInput : IPlayerInput
     {
-        private static float lookAngle = 0f;
-        private static float tiltAngle = 0f;
+        public Vector3 initialPos { get; private set; }
+        public Vector3 target { get; set; }
 
-        public static Vector3 GetMovementInput(Camera relativeCamera)
+        private float xJumpDistance;
+
+        public PlayerInput(float xJumpDistance)
         {
-            Vector3 moveVector;
-            float horizontalAxis = Input.GetAxis("Horizontal");
-            float verticalAxis = Input.GetAxis("Vertical");
+            this.xJumpDistance = xJumpDistance; 
+        }
 
-            if (relativeCamera != null)
+        public void ReadInput(Vector3 init, PlayerSetting playerSetting)
+        {
+            // Handle mouse click
+            if (Input.GetMouseButtonDown(0))
             {
-                // Calculate the move vector relative to camera rotation
-                Vector3 scalerVector = new Vector3(1f, 0f, 1f);
-                Vector3 cameraForward = Vector3.Scale(relativeCamera.transform.forward, scalerVector).normalized;
-                Vector3 cameraRight = Vector3.Scale(relativeCamera.transform.right, scalerVector).normalized;
-
-                moveVector = (cameraForward * verticalAxis + cameraRight * horizontalAxis);
-            }
-            else
-            {
-                // Use world relative directions
-                moveVector = (Vector3.forward * verticalAxis + Vector3.right * horizontalAxis);
+                initialPos = Input.mousePosition;
+                return;
             }
 
-            if (moveVector.magnitude > 1f)
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                moveVector.Normalize();
+                target = new Vector3(0, 0, xJumpDistance);
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                target = new Vector3(0, 0, -xJumpDistance);
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (Mathf.RoundToInt(init.x) > playerSetting.minX)
+                    target = new Vector3(-xJumpDistance, 0, 0);
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (Mathf.RoundToInt(init.x) < playerSetting.maxX)
+                    target = new Vector3(xJumpDistance, 0, 0);
             }
 
-            return moveVector;
         }
 
-        public static Quaternion GetMouseRotationInput(float mouseSensitivity = 3f, float minTiltAngle = -75f, float maxTiltAngle = 45f)
+        public void Calculate(Vector3 initPos, Vector3 finalPos)
         {
-            //if (!Input.GetMouseButton(1))
-            //{
-            //    return;
-            //}
+            if (Input.GetMouseButtonUp(0))
+            {
+                float disX = Mathf.Abs(initialPos.x - finalPos.x);
+                float disY = Mathf.Abs(initialPos.y - finalPos.y);
+                float x = 0;
+                float z = 0;
 
-            float mouseX = Input.GetAxis("Mouse X");
-            float mouseY = Input.GetAxis("Mouse Y");
-
-            // Adjust the look angle (Y Rotation)
-            lookAngle += mouseX * mouseSensitivity;
-            lookAngle %= 360f;
-
-            // Adjust the tilt angle (X Rotation)
-            tiltAngle += mouseY * mouseSensitivity;
-            tiltAngle %= 360f;
-            tiltAngle = MathfExtensions.ClampAngle(tiltAngle, minTiltAngle, maxTiltAngle);
-
-            var controlRotation = Quaternion.Euler(-tiltAngle, lookAngle, 0f);
-            return controlRotation;
-        }
-
-        public static bool GetSprintInput()
-        {
-            return Input.GetButton("Sprint");
-        }
-
-        public static bool GetJumpInput()
-        {
-            return Input.GetButtonDown("Jump");
-        }
-
-        public static bool GetToggleWalkInput()
-        {
-            return Input.GetButtonDown("Toggle Walk");
+                if (disX > 0 || disY > 0)
+                {
+                    if (disX > disY)
+                    {
+                        if (initialPos.x > finalPos.x)
+                        {
+                            Debug.Log("Left");
+                            target = new Vector3(-xJumpDistance, 0, 0);
+                        }
+                        else
+                        {
+                            Debug.Log("Right");
+                            target = new Vector3(xJumpDistance, 0, 0);
+                        }
+                    }
+                    else
+                    {
+                        if (initialPos.y > finalPos.y)
+                        {
+                            Debug.Log("Down");
+                            target = new Vector3(0, 0, -xJumpDistance);
+                        }
+                        else
+                        {
+                            Debug.Log("Up");
+                            target = new Vector3(0, 0, xJumpDistance);
+                        }
+                    }
+                }
+                else
+                {
+                    target = new Vector3(0, 0, xJumpDistance);
+                }
+            }
         }
     }
 

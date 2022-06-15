@@ -6,7 +6,7 @@ using TMPro;
 using System;
 
 
-namespace ThirdPerson
+namespace CrossyRoad
 {
     /// <summary>
     /// This class will be responsible to reveal player's information's listed inside a lobby

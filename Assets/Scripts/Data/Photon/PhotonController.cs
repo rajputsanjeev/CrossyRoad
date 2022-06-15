@@ -2,7 +2,7 @@
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
-using ThirdPerson;
+using CrossyRoad;
 
 namespace Multiplayer
 {

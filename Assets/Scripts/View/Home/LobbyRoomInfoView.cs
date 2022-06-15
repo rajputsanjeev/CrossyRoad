@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace ThirdPerson.Photon
+namespace CrossyRoad.Photon
 {
     //placed over prefab used for available room info; shown in home scene
     public class LobbyRoomInfoView : View

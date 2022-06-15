@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 
-namespace ThirdPerson.Views.Home
+namespace CrossyRoad.Views.Home
 {
     public class LobbyRoomListView : View
     {

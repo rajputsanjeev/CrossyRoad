@@ -1,12 +1,12 @@
-﻿using ThirdPerson.Views.Home;
+﻿using CrossyRoad.Views.Home;
 
 using UnityEngine;
-using ThirdPerson.Photon;
+using CrossyRoad.Photon;
 
 using Photon.Pun;
 
 
-namespace ThirdPerson.Controller.Home
+namespace CrossyRoad.Controller.Home
 {
     public class ConnectRoomController : PhotonListener<PlayerStatus>
     {
@@ -24,8 +24,8 @@ namespace ThirdPerson.Controller.Home
         {
             switch (data)
             {
-
                 case PlayerStatus.RANDOM_JOIN_FAILED:
+                    Debug.Log("There is no random room");
                     SceneController.NotificationGame("There is no random room.");
                 break;
                 case PlayerStatus.JOIN_ROOM:

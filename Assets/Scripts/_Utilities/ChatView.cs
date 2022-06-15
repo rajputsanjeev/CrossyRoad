@@ -1,5 +1,5 @@
-﻿using ThirdPerson;
-using ThirdPerson.Photon;
+﻿using CrossyRoad;
+using CrossyRoad.Photon;
 using Ediiie.Photon;
 using ExitGames.Client.Photon;
 using Photon.Chat;
