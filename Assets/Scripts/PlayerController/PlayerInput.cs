@@ -8,15 +8,20 @@ namespace Crossyroad
     {
         public Vector3 initialPos { get; private set; }
         public Vector3 target { get; set; }
-
+       
         private float xJumpDistance;
 
-        public PlayerInput(float xJumpDistance)
+        public PlayerSetting playerSetting;
+
+        public Transform playerPos;
+        public PlayerInput(PlayerSetting playerSetting , Transform playerPos)
         {
-            this.xJumpDistance = xJumpDistance; 
+            this.xJumpDistance = playerSetting.xJumpDistance; 
+            this.playerSetting = playerSetting; 
+            this.playerPos = playerPos;
         }
 
-        public void ReadInput(Vector3 init, PlayerSetting playerSetting)
+        public void ReadInput()
         {
             // Handle mouse click
             if (Input.GetMouseButtonDown(0))
@@ -35,23 +40,23 @@ namespace Crossyroad
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
-                if (Mathf.RoundToInt(init.x) > playerSetting.minX)
+                if (Mathf.RoundToInt(playerPos.position.x) > playerSetting.minX)
                     target = new Vector3(-xJumpDistance, 0, 0);
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                if (Mathf.RoundToInt(init.x) < playerSetting.maxX)
+                if (Mathf.RoundToInt(playerPos.position.x) < playerSetting.maxX)
                     target = new Vector3(xJumpDistance, 0, 0);
             }
 
         }
 
-        public void Calculate(Vector3 initPos, Vector3 finalPos)
+        public void CalculateMousePosition()
         {
             if (Input.GetMouseButtonUp(0))
             {
-                float disX = Mathf.Abs(initialPos.x - finalPos.x);
-                float disY = Mathf.Abs(initialPos.y - finalPos.y);
+                float disX = Mathf.Abs(initialPos.x - Input.mousePosition.x);
+                float disY = Mathf.Abs(initialPos.y - Input.mousePosition.y);
                 float x = 0;
                 float z = 0;
 
@@ -59,7 +64,7 @@ namespace Crossyroad
                 {
                     if (disX > disY)
                     {
-                        if (initialPos.x > finalPos.x)
+                        if (initialPos.x > Input.mousePosition.x)
                         {
                             Debug.Log("Left");
                             target = new Vector3(-xJumpDistance, 0, 0);
@@ -72,7 +77,7 @@ namespace Crossyroad
                     }
                     else
                     {
-                        if (initialPos.y > finalPos.y)
+                        if (initialPos.y > Input.mousePosition.y)
                         {
                             Debug.Log("Down");
                             target = new Vector3(0, 0, -xJumpDistance);

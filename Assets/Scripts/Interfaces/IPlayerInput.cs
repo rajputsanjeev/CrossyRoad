@@ -4,9 +4,9 @@ using UnityEngine;
 using Crossyroad;
 public interface IPlayerInput 
 {
-    void ReadInput(Vector3 init, PlayerSetting playerSetting);
+    void ReadInput();
 
-    void Calculate(Vector3 init, Vector3 final);
+    void CalculateMousePosition();
 
     Vector3 initialPos { get; }
 

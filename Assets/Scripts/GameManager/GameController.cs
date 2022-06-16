@@ -1,15 +1,15 @@
 ﻿using Photon.Pun;
 using System.IO;
 using UnityEngine;
-
+using System.Collections.Generic;
 namespace Crossyroad
 {
     public class GameController : MonoBehaviour
     {
         public static GameController instance;
-
-        [SerializeField]
-        public CameraMovement cameraMovement;
+        [SerializeField] TileManager tileManager;
+        [SerializeField] private List<PlayerRandomPosition> spawnPosition = new List<PlayerRandomPosition>();
+        [SerializeField] public CameraMovement cameraMovement;
 
         private void Awake()
         {
@@ -21,8 +21,33 @@ namespace Crossyroad
 
         private void Spawn()
         {
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Chicken"), new Vector3(0,2,15), Quaternion.identity);
+        GameObject prefab = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Chicken"), GetTransform().position , Quaternion.identity);
+        tileManager.playerTransform = prefab.transform;
+        tileManager.enabled = true;
+        tileManager.Init();
+
         }
+
+        private Transform GetTransform()
+        {
+            int randomPoint = UnityEngine.Random.Range(0, spawnPosition.Count);
+
+            if (spawnPosition[randomPoint].IsUserd)
+                GetTransform();
+
+            spawnPosition[randomPoint].IsUserd = true;
+            spawnPosition[randomPoint].name = PhotonNetwork.LocalPlayer.NickName;
+            return spawnPosition[randomPoint].position;
+
+        }
+    }
+    [System.Serializable]
+
+    public class PlayerRandomPosition
+    {
+        public bool IsUserd;
+        public string name;
+        public Transform position;
     }
 }
 

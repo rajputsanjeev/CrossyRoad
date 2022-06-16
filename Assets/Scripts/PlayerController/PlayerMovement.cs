@@ -9,7 +9,7 @@ namespace Crossyroad
 {
     [RequireComponent(typeof(PhotonView))]
 
-    public class PlayerMovement : MonoBehaviour, IPunObservable
+    public class PlayerMovement : MonoBehaviour
     {
         public delegate void OnGameOver();
         public static OnGameOver gameOverEvent;
@@ -22,11 +22,8 @@ namespace Crossyroad
 
         private IPlayerInput playerInput;
         public GameController gameController;
-        private Vector3 correctPlayerPos;
-        private Quaternion correctPlayerRot;
-
-        public string playerDirection => moter.MoveDirection;
-
+        
+        public string playerDirection => moter.moveDirection;
         public bool IsMine => view.IsMine;
         public bool IsMoving => moter.IsMoving;
 
@@ -42,7 +39,7 @@ namespace Crossyroad
 
         private void Awake()
         {
-            playerInput = new PlayerInput(setting.xJumpDistance);
+            playerInput = new PlayerInput( setting , transform);
             moter = new PlayerMoter(playerInput, transform, setting, rigidbody, gameObject);
             gameController = GameController.instance;
             if (IsMine)
@@ -58,15 +55,11 @@ namespace Crossyroad
             {
                 Debug.Log("IsMoving " + IsMoving);
                 moter.SetCurrentPosition();
-                playerInput.ReadInput(transform.position, setting);
-                playerInput.Calculate(transform.position, Input.mousePosition);
-                moter.Move(playerInput.target);
-                moter.MovePlayer(playerInput.target);
-            }
-            else
-            {
-                moter.Move(playerInput.target);
-                moter.MovePlayer(playerInput.target);
+                playerInput.ReadInput();
+                playerInput.CalculateMousePosition();
+                moter.SetTarget();
+                moter.MovePlayer();
+                moter.RotatePlayer();
             }
         }
 
@@ -74,21 +67,6 @@ namespace Crossyroad
         {
             //moter.IsMoving = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                //We own this player: send the others our data
-                stream.SendNext(transform.position);
-                stream.SendNext(transform.rotation);
-            }
-            else
-            {
-                //Network player, receive data
-                playerInput.target = (Vector3)stream.ReceiveNext();
-            }
         }
     }
 }

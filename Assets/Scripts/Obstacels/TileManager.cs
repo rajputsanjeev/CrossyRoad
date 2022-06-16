@@ -11,7 +11,7 @@ public class TileManager : MonoBehaviour , IObjectPool
     public Transform parent;
     public TileMotor tileMotor;
 
-    private void Awake()
+    public void Init()
     {
         tileMotor = new TileMotor(playerTransform, tileGeneration, spawnPoint, parent);
         for (int i = 0; i < 30; i++)
@@ -22,6 +22,9 @@ public class TileManager : MonoBehaviour , IObjectPool
 
     public void Update()
     {
+        if (playerTransform == null)
+            return;
+
         tileMotor.SpawnTileFromPool(0f, 100f);
     }
 

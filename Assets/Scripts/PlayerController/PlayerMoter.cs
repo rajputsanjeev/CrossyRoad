@@ -6,7 +6,7 @@ namespace Crossyroad
 {
     public class PlayerMoter
     {
-        public string MoveDirection
+        public string moveDirection
         {
             get
             {
@@ -62,15 +62,15 @@ namespace Crossyroad
             set { moving = value; }
         }
 
-        public void Move(Vector3 target)
+        public void SetTarget()
         {
             if (moving)
                 return;
 
-            if (target == Vector3.zero)
+            if (m_player.target == Vector3.zero)
                 return;
 
-            var newPosition = m_current + target;
+            var newPosition = m_current + m_player.target;
 
             // Don't move if blocked by obstacle.
             if (Physics.CheckSphere(newPosition + new Vector3(0.0f, 0.5f, 0.0f), 0.1f))
@@ -82,10 +82,18 @@ namespace Crossyroad
             m_playerSetting.elapsedTime = 0;
             m_rigidbody.isKinematic = true;
 
+        }
 
+        public void RotatePlayer()
+        {
+
+            if (!moving)
+                return;
+
+            Debug.Log("Rotation");
             if (m_mesh != null)
             {
-                switch (MoveDirection)
+                switch (moveDirection)
                 {
                     case "north":
                         m_mesh.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -104,10 +112,9 @@ namespace Crossyroad
                 }
 
             }
-
         }
 
-        public void MovePlayer(Vector3 target)
+        public void MovePlayer()
         {
             if (!moving)
                 return;
@@ -124,11 +131,10 @@ namespace Crossyroad
 
             if (result == m_target)
             {
-                m_player.target = Vector3.zero;
                 moving = false;
                 m_current = m_target;
                 m_rigidbody.isKinematic = false;
-                target = Vector3.zero;
+                m_player.target = Vector3.zero;
                 m_rigidbody.AddForce(0, -10, 0, ForceMode.VelocityChange);
             }
         }

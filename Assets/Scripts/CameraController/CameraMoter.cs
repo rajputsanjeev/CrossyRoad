@@ -19,6 +19,7 @@ namespace Crossyroad
 
         // This value will change at the runtime depending on target movement. Initialize with zero vector.
         private Vector3 velocity = Vector3.zero;
+        private Vector3 shouldPos;
 
         public CameraMoter(Transform playerTransform, Transform cameraTransform , CameraSetting cameraSetting , PlayerMovement playerMovementScript , Vector3 initialOffset)
         {
@@ -40,26 +41,27 @@ namespace Crossyroad
 
         public void UpdateLateUpdate()
         {
-            Debug.Log("Leteupdate");
+            offset.x = cameraTransform.position.x;
+            offset.y = cameraTransform.position.y;
 
+            Debug.Log("Leteupdate");
             if (moving)
             {
                 Debug.Log("  Moving  ");
                 Vector3 targetPosition = playerTransform.position + offsetPlayerMoveing;
-                cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, targetPosition, ref velocity, SmoothTime);
+                cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPosition, Time.deltaTime);
+                offset.z += 0.1f;
             }
-            //else
-            //{
-            //    Debug.Log(" Not Moving");
-            //    if (Vector3.Distance(cameraTransform.position, playerTransform.position) < 50)
-            //    {
-            //        offset.z += cameraSetting.speedIncrementZ * Time.deltaTime;
-            //        cameraTransform.position = Vector3.Lerp(cameraTransform.position, offset, Time.deltaTime);
-            //    }
-            //}
+            else
+            {
+                Debug.Log(" Not Moving ");
+                cameraTransform.position = Vector3.Lerp(cameraTransform.position, offset, Time.deltaTime);
+                offset.z += cameraSetting.speedIncrementZ * Time.deltaTime;
+            }
+
+            //shouldPos = Vector3.Lerp(cameraTransform.position, playerTransform.position,Time.deltaTime);
+            //cameraTransform.position = new Vector3(shouldPos.x,1,shouldPos.z);
         }
     }
-
-
 }
 
