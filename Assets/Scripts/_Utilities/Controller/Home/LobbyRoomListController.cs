@@ -49,6 +49,8 @@ namespace CrossyRoad.Controller.Home
                 return;
             }
 
+            Debug.Log("Room Lsit Update "+roomList.Count);
+
             for (int i = 0; i < roomList.Count; i++)
             {
                 if (roomList[i].CustomProperties.ContainsKey("type") && !roomList[i].CustomProperties["type"].Equals(RoomType.LOBBY.ToString()))

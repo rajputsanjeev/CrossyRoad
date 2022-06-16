@@ -60,8 +60,13 @@ namespace Crossyroad
                 moter.SetCurrentPosition();
                 playerInput.ReadInput(transform.position, setting);
                 playerInput.Calculate(transform.position, Input.mousePosition);
-                moter.Move();
-                moter.MovePlayer();
+                moter.Move(playerInput.target);
+                moter.MovePlayer(playerInput.target);
+            }
+            else
+            {
+                moter.Move(playerInput.target);
+                moter.MovePlayer(playerInput.target);
             }
         }
 
@@ -82,8 +87,7 @@ namespace Crossyroad
             else
             {
                 //Network player, receive data
-                correctPlayerPos = (Vector3)stream.ReceiveNext();
-                correctPlayerRot = (Quaternion)stream.ReceiveNext();
+                playerInput.target = (Vector3)stream.ReceiveNext();
             }
         }
     }

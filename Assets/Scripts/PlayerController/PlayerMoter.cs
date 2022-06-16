@@ -62,15 +62,15 @@ namespace Crossyroad
             set { moving = value; }
         }
 
-        public void Move()
+        public void Move(Vector3 target)
         {
             if (moving)
                 return;
 
-            if (m_player.target == Vector3.zero)
+            if (target == Vector3.zero)
                 return;
 
-            var newPosition = m_current + m_player.target;
+            var newPosition = m_current + target;
 
             // Don't move if blocked by obstacle.
             if (Physics.CheckSphere(newPosition + new Vector3(0.0f, 0.5f, 0.0f), 0.1f))
@@ -107,7 +107,7 @@ namespace Crossyroad
 
         }
 
-        public void MovePlayer()
+        public void MovePlayer(Vector3 target)
         {
             if (!moving)
                 return;
@@ -124,10 +124,11 @@ namespace Crossyroad
 
             if (result == m_target)
             {
+                m_player.target = Vector3.zero;
                 moving = false;
                 m_current = m_target;
                 m_rigidbody.isKinematic = false;
-                m_player.target = Vector3.zero;
+                target = Vector3.zero;
                 m_rigidbody.AddForce(0, -10, 0, ForceMode.VelocityChange);
             }
         }
