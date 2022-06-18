@@ -11,7 +11,7 @@ namespace Crossyroad
         private Transform cameraTransform;
         private PlayerMovement playerMovement;
         public CameraSetting cameraSetting;
-        private Vector3 offset;
+        public Vector3 offset;
         private Vector3 offsetPlayerMoveing;
         private Vector3 initialOffset;
         // change this value to get desired smoothness
@@ -41,26 +41,29 @@ namespace Crossyroad
 
         public void UpdateLateUpdate()
         {
-            offset.x = cameraTransform.position.x;
-            offset.y = cameraTransform.position.y;
+           
 
-            Debug.Log("Leteupdate");
-            if (moving)
+            Debug.Log("playerMovement.playerDirection " + playerMovement.playerDirection);
+            Debug.Log("Distance " + Vector3.Distance(playerTransform.position, cameraTransform.position));
+            Vector3 targetPosition = playerTransform.position + offsetPlayerMoveing;
+            if (moving && playerMovement.playerDirection == "north" && Vector3.Distance(playerTransform.position, cameraTransform.position) > 50)
             {
-                Debug.Log("  Moving  ");
-                Vector3 targetPosition = playerTransform.position + offsetPlayerMoveing;
-                cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPosition, Time.deltaTime);
-                offset.z += 0.1f;
+                //Debug.Log("  Moving  ");
+                 offset.x = targetPosition.x;
+                 offset.y = targetPosition.y;
+                 cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPosition, Time.deltaTime);
+                 offset.z = cameraTransform.position.z * cameraSetting.speedIncrementZ;
+              
             }
             else
             {
-                Debug.Log(" Not Moving ");
+                //Debug.Log(" Not Moving ");
+                // Debug.Log("offset.z " + offset.z);
+                offset.x = targetPosition.x;
+                offset.y = targetPosition.y;
                 cameraTransform.position = Vector3.Lerp(cameraTransform.position, offset, Time.deltaTime);
-                offset.z += cameraSetting.speedIncrementZ * Time.deltaTime;
+                offset.z += cameraSetting.speedOffsetZ * Time.deltaTime;
             }
-
-            //shouldPos = Vector3.Lerp(cameraTransform.position, playerTransform.position,Time.deltaTime);
-            //cameraTransform.position = new Vector3(shouldPos.x,1,shouldPos.z);
         }
     }
 }
