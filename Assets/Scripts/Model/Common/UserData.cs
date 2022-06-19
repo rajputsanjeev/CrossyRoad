@@ -11,7 +11,9 @@ namespace CrossyRoad
     public class UserData : MonoBehaviour
     {
         public static UserData Instance;
+
         public static string UserName { get; set; }
+        public static string UserID { get; set; }
 
         private void Awake()
         {

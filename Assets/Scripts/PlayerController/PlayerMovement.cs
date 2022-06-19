@@ -29,12 +29,12 @@ namespace Crossyroad
 
         private void OnEnable()
         {
-            gameOverEvent += GameOver;
+            //gameOverEvent += GameOver;
         }
 
         private void OnDisable()
         {
-            gameOverEvent -= GameOver;
+            //gameOverEvent -= GameOver;
         }
 
         private void Awake()

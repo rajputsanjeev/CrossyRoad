@@ -32,6 +32,7 @@ namespace Multiplayer
         public override void OnJoinedRoom()
         {
             Debug.Log("Join Room");
+            photonModel.SetPlayerProperty("PositionCount", PhotonNetwork.CurrentRoom.PlayerCount);
             CallPhotonListner(PlayerStatus.JOIN_ROOM);
             
         }
@@ -100,16 +101,13 @@ namespace Multiplayer
         }
         public override void OnLobbyStatisticsUpdate(List<TypedLobbyInfo> lobbyStatistics)
         {
-          //Debug.Log("OnLobbyStatisticsUpdate  ");
             string countPlayersOnline;
             countPlayersOnline = lobbyStatistics[0].PlayerCount + " Players Online";
-          //Debug.Log("Player count  " + PhotonNetwork.CountOfPlayers);
             playerCount = PhotonNetwork.CountOfPlayers;
         }
 
         public override void OnLeftRoom()
         {
-         //   Debug.Log("==============left room");
             if (!photonModel.isReconnected)
             {
                 if (photonModel.playerStatus == PlayerStatus.NONE)

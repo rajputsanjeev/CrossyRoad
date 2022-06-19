@@ -1,10 +1,8 @@
 ﻿using CrossyRoad.Views.Home;
-
 using UnityEngine;
 using CrossyRoad.Photon;
-
 using Photon.Pun;
-
+using Photon.Realtime;
 
 namespace CrossyRoad.Controller.Home
 {
@@ -29,11 +27,24 @@ namespace CrossyRoad.Controller.Home
                     SceneController.NotificationGame("There is no random room.");
                 break;
                 case PlayerStatus.JOIN_ROOM:
-                      m_View.startGame.SetActive(PhotonNetwork.IsMasterClient);
-                    UIPanelManager.Show(Panel.TYPED_LOBBY, true);
+                     m_View.startGame.SetActive(PhotonNetwork.IsMasterClient);
+                     UIPanelManager.Show(Panel.TYPED_LOBBY, true);
+                    break;
+                case PlayerStatus.OPPONENT_JOINED:
+                    Debug.Log("Opponent Join ");
                     break;
             }
         }
+
+        //public override void OnPhotonEventExecuted(PlayerStatus data, Player enterPlayer)
+        //{
+        //    switch (data)
+        //    {
+        //        case PlayerStatus.OPPONENT_JOINED:
+        //            Debug.Log("Opponent Join "+enterPlayer.NickName);
+        //            break;
+        //    }
+        //}
 
         private void OnCreateButtonClicked()
         {
@@ -45,5 +56,7 @@ namespace CrossyRoad.Controller.Home
         {
             PhotonController.JoinRandomRoom();
         }
+
+      
     }
 }

@@ -9,7 +9,8 @@ namespace Crossyroad
     {
         public float minZ = 0.0f;
         public float speedIncrementZ = 1.5f;
-        public float speedOffsetZ = 4.0f;
+        public float speedOffsetZ = 1f;
+        public float speedOffsetZPlayerMove = 15.0f;
     }
 
 }

@@ -15,7 +15,6 @@ namespace Crossyroad
         public float interval = 6.0f;
         public float leftX = -20.0f;
         public float rightX = 20.0f;
-        private float elapsedTime;
         private List<GameObject> generatedObjects = new List<GameObject>();
 
         public void SetPlayerTransform(Transform playerTransform , IObjectPool objectPool)
@@ -29,6 +28,7 @@ namespace Crossyroad
             Debug.Log("onenable");
             GetRandomValue();
         }
+
         private void GetRandomValue()
         {
             if (randomizeValues)
@@ -38,7 +38,6 @@ namespace Crossyroad
                 interval = Random.Range(5.0f, 9.0f);
             }
         }
-
        
         public virtual void Init()
         {
@@ -80,7 +79,7 @@ namespace Crossyroad
             if (playerTransform == null)
                 return;
 
-            if (transform.position.z <= playerTransform.position.z - 20f)
+            if (transform.position.z <= playerTransform.position.z - 40f)
             {
                 gameObject.SetActive(false);
                 for (int i = 0; i < generatedObjects.Count; i++)
@@ -89,6 +88,10 @@ namespace Crossyroad
                 }
                 objectPoolLisner.AddtoPool(gameObject);
             }
+        }
+        protected virtual void OnTriggerEnter()
+        {
+
         }
     }
 }

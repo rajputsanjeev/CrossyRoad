@@ -16,7 +16,7 @@ public class TileManager : MonoBehaviour , IObjectPool
         tileMotor = new TileMotor(playerTransform, tileGeneration, spawnPoint, parent);
         for (int i = 0; i < 30; i++)
         {
-            tileMotor.SpawnTile(this, 0f, 100f);
+            tileMotor.SpawnTileAtZero(this, 0f, 70f);
         }
     }
 
@@ -25,11 +25,13 @@ public class TileManager : MonoBehaviour , IObjectPool
         if (playerTransform == null)
             return;
 
-        tileMotor.SpawnTileFromPool(0f, 100f);
+        tileMotor.SpawnTileFromPool(0f, 70f);
     }
 
     public void AddtoPool(GameObject gameObject)
     {
+        Debug.Log("Before add " + tileMotor.objectPool.Count);
         tileMotor.objectPool.Add(gameObject);
+        Debug.Log("after add " + tileMotor.objectPool.Count);
     }
 }

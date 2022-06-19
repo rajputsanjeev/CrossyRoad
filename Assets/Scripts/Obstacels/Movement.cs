@@ -75,6 +75,11 @@ namespace Crossyroad
             }
 
         }
+
+        protected virtual void OnTriggerEnter()
+        {
+
+        }
     }
 
 }

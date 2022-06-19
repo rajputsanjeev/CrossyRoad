@@ -24,6 +24,10 @@ namespace Crossyroad
             this.playerTransform = playerTransform;
             this.objectPoolLisner = objectPool;
         }
+        private void OnEnable()
+        {
+            Init();
+        }
 
         public void Init()
         {
@@ -55,7 +59,7 @@ namespace Crossyroad
             if (playerTransform == null)
                 return;
 
-            if (transform.position.z <= playerTransform.position.z - 20f)
+            if (transform.position.z <= playerTransform.position.z - 40f)
             {
                 gameObject.SetActive(false);
                 objectPoolLisner.AddtoPool(gameObject);

@@ -73,13 +73,35 @@ namespace Multiplayer
             PhotonListener<T>.Instance.OnPhotonEventExecuted(data);
         }
 
+        protected void CallPhotonListner<T1 , T2>(T1 data , T2 infom)
+        {
+            if (typeof(T1) != typeof(List<RoomInfo>))
+            {
+                ShowLoading(false);
+            }
+
+            if (PhotonListener<T1>.Instance == null)
+            {
+                return;
+            }
+
+            PhotonListener<T1 ,T2>.Instance.OnPhotonEventExecuted(data , infom);
+        }
+
         public void ConnectToPhoton(PlayerStatus playerStatus, bool isReconnect)
         {
             photonModel.playerStatus = playerStatus;
             Debug.Log("connect to photon : " + playerStatus);
 
             photonModel.isReconnected = isReconnect;
-            
+
+            //person with an userid can connect only once from photon network
+
+            //AuthenticationValues authValues = new AuthenticationValues();
+            //authValues.AuthType = CustomAuthenticationType.Custom;
+            //authValues.UserId = UserData.UserID;
+            //PhotonNetwork.AuthValues = authValues;
+
             bool success = PhotonNetwork.ConnectUsingSettings();
 
             if (!success)
@@ -93,6 +115,14 @@ namespace Multiplayer
 
         public void CreateRoom(string roomName, RoomType type)
         {
+            if (Utils.IsEmpty(roomName) && type == RoomType.LOBBY)
+            {
+                roomName = photonModel.lobbyRoomName;
+            }
+
+            ShowLoading();
+            photonModel.lobbyRoomName = roomName;
+
             bool success;
             success = PhotonNetwork.CreateRoom(roomName,photonModel.GetRoomOptionsRandom(type));
             CheckSuccess(success);

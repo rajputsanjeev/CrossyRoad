@@ -9,6 +9,7 @@ namespace Crossyroad
       protected override void OnEnable()
         {
             base.OnEnable();
+            Init();
         }
     }
 }

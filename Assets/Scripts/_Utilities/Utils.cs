@@ -1,12 +1,7 @@
-﻿using CrossyRoad;
-using CrossyRoad.Photon;
-
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using UnityEngine;
-
-public static class Utils
+﻿public static class Utils
 {
-   
+    public static bool IsEmpty(string value)
+    {
+        return string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
+    }
 }
