@@ -1,9 +1,6 @@
 ﻿using CrossyRoad;
-
-
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,8 +10,6 @@ namespace Multiplayer
     {
         public static PhotonBaseController Instance;
         protected PhotonModel photonModel;
-
-
 
         public Player OpponentPlayer => photonModel.opponentPlayer;
 
@@ -97,10 +92,10 @@ namespace Multiplayer
 
             //person with an userid can connect only once from photon network
 
-            //AuthenticationValues authValues = new AuthenticationValues();
-            //authValues.AuthType = CustomAuthenticationType.Custom;
-            //authValues.UserId = UserData.UserID;
-            //PhotonNetwork.AuthValues = authValues;
+            AuthenticationValues authValues = new AuthenticationValues();
+            authValues.AuthType = CustomAuthenticationType.Custom;
+            authValues.UserId = UserData.UserID;
+            PhotonNetwork.AuthValues = authValues;
 
             bool success = PhotonNetwork.ConnectUsingSettings();
 

@@ -15,8 +15,8 @@ namespace Crossyroad
             cameraMoter = new CameraMoter(playerTransform, transform, cameraSetting, playerTransform.gameObject.GetComponent<PlayerMovement>(), initialOffset);
             cameraMoter.InitPos();
 
-            if (GameController.instance != null)
-                GameController.instance.cameraMovement = this;
+            if (((GameController)GameController.Instance) != null)
+                ((GameController)GameController.Instance).cameraMovement = this;
         }
 
         public void LateUpdate()

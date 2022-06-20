@@ -14,7 +14,7 @@ public class PhotonBaseModel : MonoBehaviour
         RoomOptions options = new RoomOptions();
         options.PlayerTtl = 1000;
         options.EmptyRoomTtl = 0;
-        options.MaxPlayers = 8;
+        options.MaxPlayers = 2;
         options.PublishUserId = true;
         return options;
     }

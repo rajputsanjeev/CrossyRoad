@@ -3,13 +3,13 @@ using Crossyroad;
 using UnityEngine.SceneManagement;
 using Photon.Chat;
 using Photon.Pun;
-
+using CrossyRoad;
 
 namespace Crossyroad
 {
     [RequireComponent(typeof(PhotonView))]
 
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : RaiseEventListener
     {
         public delegate void OnGameOver();
         public static OnGameOver gameOverEvent;
@@ -27,21 +27,12 @@ namespace Crossyroad
         public bool IsMine => view.IsMine;
         public bool IsMoving => moter.IsMoving;
 
-        private void OnEnable()
-        {
-            //gameOverEvent += GameOver;
-        }
-
-        private void OnDisable()
-        {
-            //gameOverEvent -= GameOver;
-        }
-
         private void Awake()
         {
             playerInput = new PlayerInput( setting , transform);
             moter = new PlayerMoter(playerInput, transform, setting, rigidbody, gameObject);
-            gameController = GameController.instance;
+            gameController = ((GameController)GameController.Instance);
+
             if (IsMine)
             {
                 gameController.cameraMovement.playerTransform = transform;
@@ -61,12 +52,6 @@ namespace Crossyroad
                 moter.MovePlayer();
                 moter.RotatePlayer();
             }
-        }
-
-        private void GameOver()
-        {
-            //moter.IsMoving = false;
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
