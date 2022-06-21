@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace Crossyroad
 {
-    public interface IObjectPool
+    public class ScoreboardItem : MonoBehaviour
     {
-        void AddToPool(GameObject gameObject);
+        public Text scoreText;
     }
 
 }
-
-
-
-
-
-

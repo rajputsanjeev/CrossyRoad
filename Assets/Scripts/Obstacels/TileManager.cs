@@ -28,7 +28,7 @@ public class TileManager : MonoBehaviour , IObjectPool
         tileMotor.SpawnTileFromPool(0f, 70f);
     }
 
-    public void AddtoPool(GameObject gameObject)
+    public void AddToPool(GameObject gameObject)
     {
         Debug.Log("Before add " + tileMotor.objectPool.Count);
         tileMotor.objectPool.Add(gameObject);

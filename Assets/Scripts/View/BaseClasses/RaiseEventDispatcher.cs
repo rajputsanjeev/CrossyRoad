@@ -4,20 +4,24 @@ using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 
-public abstract class RaiseEventDispatcher<T1,T2> : Behaviour<T1, T2> where T1:View
+namespace Crossyroad
 {
-    protected virtual void OnEnable()
+    public abstract class RaiseEventDispatcher<T1, T2> : Behaviour<T1, T2> where T1 : View
     {
-        Instance = this;
-    }
-
-    protected void RaiseEvent(RaiseEventType raiseEventType, ReceiverGroup receiverGroup, object data = null)
-    {
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions()
+        protected virtual void OnEnable()
         {
-            Receivers = receiverGroup
-        };
+            Instance = this;
+        }
 
-        PhotonNetwork.RaiseEvent((byte)raiseEventType, data, raiseEventOptions, SendOptions.SendReliable);
+        protected void RaiseEvent(RaiseEventType raiseEventType, ReceiverGroup receiverGroup, object data = null)
+        {
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions()
+            {
+                Receivers = receiverGroup
+            };
+
+            PhotonNetwork.RaiseEvent((byte)raiseEventType, data, raiseEventOptions, SendOptions.SendReliable);
+        }
     }
+
 }

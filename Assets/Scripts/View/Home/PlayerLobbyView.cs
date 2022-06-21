@@ -1,12 +1,11 @@
-﻿using Photon.Pun;
-using Photon.Realtime;
+﻿using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
 
-namespace CrossyRoad
+
+namespace Crossyroad
 {
     /// <summary>
     /// This class will be responsible to reveal player's information's listed inside a lobby

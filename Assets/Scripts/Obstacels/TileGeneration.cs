@@ -14,18 +14,34 @@ namespace Crossyroad {
         public int lineBehind = 5;
 
 
-        public T GetTile<T>() where T: Tile
+        public T GetTile<T>() where T : Tile
         {
             T line = null;
             line = tiles[Random.Range(0, tiles.Count)] as T;
             return line;
         }
 
-        public GameObject SpawnTile(Tile tile)
+        public List<GameObject> GetTileObstacal(TileObstacal tileObstacal)
         {
-            GameObject gameObject = Instantiate(tile.tileObject) as GameObject;
+            List<GameObject> list = new List<GameObject>();
+            for (int i = 0; i < 3; i++)
+            {
+                int random = Random.Range(0, tileObstacal.tileList.Count) ;
+               GameObject tileObstacel =  SpawnTile(tileObstacal.tileList[random]);
+                list.Add(tileObstacel);
+            }
+            return list;
+        }
+
+
+        public GameObject SpawnTile(GameObject tile)
+        {
+            GameObject gameObject = Instantiate(tile) as GameObject;
             return gameObject;
         }
+
+
+
     }
 
     [System.Serializable]
@@ -34,7 +50,13 @@ namespace Crossyroad {
         public TileType tileType;
         public GameObject tileObject;
         public List<GameObject> tileList;
+        public TileObstacal tileObstacal;
     }
 
+    [System.Serializable]
+    public class TileObstacal
+    {
+        public List<GameObject> tileList;
+    }
 }
 

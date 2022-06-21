@@ -1,4 +1,4 @@
-﻿using CrossyRoad;
+﻿using Crossyroad;
 
 using UnityEngine;
 

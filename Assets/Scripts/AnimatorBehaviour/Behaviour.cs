@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crossyroad;
 
 public abstract class Behaviour<T1> : MonoBehaviour where T1 : View
 {

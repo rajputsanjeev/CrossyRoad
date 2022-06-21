@@ -4,7 +4,7 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Multiplayer
+namespace Crossyroad
 {
     public abstract class PhotonBaseController : MonoBehaviourPunCallbacks
     {
@@ -68,21 +68,6 @@ namespace Multiplayer
             PhotonListener<T>.Instance.OnPhotonEventExecuted(data);
         }
 
-        protected void CallPhotonListner<T1 , T2>(T1 data , T2 infom)
-        {
-            if (typeof(T1) != typeof(List<RoomInfo>))
-            {
-                ShowLoading(false);
-            }
-
-            if (PhotonListener<T1>.Instance == null)
-            {
-                return;
-            }
-
-            PhotonListener<T1 ,T2>.Instance.OnPhotonEventExecuted(data , infom);
-        }
-
         public void ConnectToPhoton(PlayerStatus playerStatus, bool isReconnect)
         {
             photonModel.playerStatus = playerStatus;
@@ -92,10 +77,10 @@ namespace Multiplayer
 
             //person with an userid can connect only once from photon network
 
-            AuthenticationValues authValues = new AuthenticationValues();
-            authValues.AuthType = CustomAuthenticationType.Custom;
-            authValues.UserId = UserData.UserID;
-            PhotonNetwork.AuthValues = authValues;
+            //AuthenticationValues authValues = new AuthenticationValues();
+            //authValues.AuthType = CustomAuthenticationType.Custom;
+            //authValues.UserId = UserData.UserID;
+            //PhotonNetwork.AuthValues = authValues;
 
             bool success = PhotonNetwork.ConnectUsingSettings();
 

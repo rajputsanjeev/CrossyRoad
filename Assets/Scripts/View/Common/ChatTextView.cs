@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Photon.Pun;
-using CrossyRoad.Photon;
-using Ediiie.Photon;
-using CrossyRoad;
+
 
 public class ChatTextView : MonoBehaviour
 {

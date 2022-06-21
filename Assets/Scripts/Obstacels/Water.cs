@@ -12,9 +12,9 @@ namespace Crossyroad
             Init();
         }
 
-        void OnTriggerEnter(Collider other)
+      protected override  void OnTriggerEnter(Collider other)
         {
-            base.OnTriggerEnter();
+            base.OnTriggerEnter(other);
             // When collide with player, flatten it!
             if (other.gameObject.tag == "Player")
             {

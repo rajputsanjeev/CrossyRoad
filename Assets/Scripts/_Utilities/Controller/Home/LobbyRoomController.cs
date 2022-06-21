@@ -1,11 +1,9 @@
-﻿using CrossyRoad;
-using CrossyRoad.Photon;
+﻿using CrossyRoad.Photon;
 using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ediiie.Photon
-{
+namespace Crossyroad { 
     /// <summary>
     /// This class will update lobby view as player joins/leaves lobby.
     /// Also, will manage challenges using ChallengeController base class.

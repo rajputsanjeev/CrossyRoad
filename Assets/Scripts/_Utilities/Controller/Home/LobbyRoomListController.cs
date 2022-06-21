@@ -1,4 +1,5 @@
-﻿using CrossyRoad.Photon;
+﻿using Crossyroad;
+using CrossyRoad.Photon;
 using CrossyRoad.Views.Home;
 using Photon.Pun;
 using Photon.Realtime;

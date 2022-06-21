@@ -1,9 +1,8 @@
-﻿using CrossyRoad.Photon;
-using Multiplayer;
+﻿using Crossyroad;
 
 public abstract class PhotonListener<T1> : Behaviour<View>
 {
-    public static PhotonListener<T1> Instance;
+    public static new PhotonListener<T1> Instance;
     protected PhotonBaseController PhotonController => PhotonBaseController.Instance;
 
     protected override void Awake()
@@ -29,31 +28,3 @@ public abstract class PhotonListener<T1> : Behaviour<View>
 
 }
 
-public abstract class PhotonListener<T1, T2> : Behaviour<View>
-{
-    public static PhotonListener<T1, T2> Instance;
-    protected PhotonBaseController PhotonController => PhotonBaseController.Instance;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
-
-    protected virtual void OnEnable()
-    {
-        Instance = this;
-    }
-
-    protected virtual void OnDisable()
-    {
-    }
-
-    public abstract void OnPhotonEventExecuted(T1 data);
-
-    public abstract void OnPhotonEventExecuted(T1 data, T2 inform);
-}

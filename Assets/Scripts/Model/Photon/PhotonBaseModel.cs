@@ -1,10 +1,10 @@
-﻿using CrossyRoad;
+﻿
 using ExitGames.Client.Photon;
 
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-
+using Crossyroad;
 public class PhotonBaseModel : MonoBehaviour
 {
     public RoomOptions GetRoomOptionsRandom(RoomType roomType)

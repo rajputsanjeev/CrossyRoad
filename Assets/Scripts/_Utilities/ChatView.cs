@@ -1,6 +1,4 @@
 ﻿using CrossyRoad;
-using CrossyRoad.Photon;
-using Ediiie.Photon;
 using ExitGames.Client.Photon;
 using Photon.Chat;
 using Photon.Pun;
@@ -9,6 +7,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Crossyroad;
 
 //TODO:Code Yet To be Optimized
 public class ChatView : MonoBehaviour, IChatClientListener

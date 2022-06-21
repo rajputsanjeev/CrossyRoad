@@ -86,10 +86,10 @@ namespace Crossyroad
                 {
                     generatedObjects[i].SetActive(false);
                 }
-                objectPoolLisner.AddtoPool(gameObject);
+                objectPoolLisner.AddToPool(gameObject);
             }
         }
-        protected virtual void OnTriggerEnter()
+        protected virtual void OnTriggerEnter(Collider collider)
         {
 
         }

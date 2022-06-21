@@ -31,7 +31,7 @@ namespace Crossyroad
         private float elapsedTime;
         private Rigidbody playerBody;
 
-        public void Start()
+        protected override void Start()
         {
             originalY = transform.position.y;
         }

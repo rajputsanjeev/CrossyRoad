@@ -62,7 +62,7 @@ namespace Crossyroad
             if (transform.position.z <= playerTransform.position.z - 40f)
             {
                 gameObject.SetActive(false);
-                objectPoolLisner.AddtoPool(gameObject);
+                objectPoolLisner.AddToPool(gameObject);
             }
         }
      

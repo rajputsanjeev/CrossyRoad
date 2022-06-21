@@ -1,9 +1,7 @@
-﻿using CrossyRoad;
-using ExitGames.Client.Photon;
-
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine;
+using Crossyroad;
+using CrossyRoad;
 
 public class PhotonModel : PhotonBaseModel
 {

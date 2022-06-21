@@ -34,9 +34,6 @@ namespace Crossyroad
 
         public void UpdateLateUpdate()
         {
-            //Debug.Log("offsetPlayerMoveing " + offsetPlayerMoveing);
-           //Debug.Log("Distance " + Vector3.Distance(playerTransform.position, cameraTransform.position));
-
             Vector3 targetPosition = playerTransform.position + offsetPlayerMoveing;
             offset.x = playerTransform.position.x;
             offset.y = targetPosition.y;

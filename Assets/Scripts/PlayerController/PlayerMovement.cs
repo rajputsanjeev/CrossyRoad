@@ -21,25 +21,24 @@ namespace Crossyroad
         [SerializeField] private PlayerMoter moter;
 
         private IPlayerInput playerInput;
-        public GameController gameController;
         
         public string playerDirection => moter.moveDirection;
         public bool IsMine => view.IsMine;
         public bool IsMoving => moter.IsMoving;
 
+        private PlayerInstance playerInstance;
+
+     
+
+        #region Unity Function
         private void Awake()
         {
-            playerInput = new PlayerInput( setting , transform);
+            playerInput = new PlayerInput(setting , transform);
             moter = new PlayerMoter(playerInput, transform, setting, rigidbody, gameObject);
-            gameController = ((GameController)GameController.Instance);
-
-            if (IsMine)
-            {
-                gameController.cameraMovement.playerTransform = transform;
-                gameController.cameraMovement.Init();
-            }
+            playerInstance = ((GameController)GameController.Instance).GetPlayerInstance(view.ViewID);
         }
 
+   
         private void Update()
         {
             if (view.IsMine)
@@ -52,6 +51,23 @@ namespace Crossyroad
                 moter.MovePlayer();
                 moter.RotatePlayer();
             }
+        }
+        #endregion
+
+        private void OnTriggerEnter(Collider other)
+        {
+            // When collide with player, flatten it!
+            if (other.gameObject.tag == "Platform")
+            {
+                view.RPC("AddScore", RpcTarget.MasterClient , view.ViewID);
+            }
+        }
+
+
+        [PunRPC]
+        private void AddScore(int id)
+        {
+            ((GameController)GameController.Instance).GetPlayerInstance(id).AddScore();
         }
     }
 }

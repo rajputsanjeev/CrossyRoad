@@ -1,10 +1,10 @@
-﻿using Photon.Pun;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
-using CrossyRoad;
 
-namespace Multiplayer
+namespace Crossyroad
 {
     public class PhotonController : PhotonBaseController
     {
@@ -32,6 +32,7 @@ namespace Multiplayer
         public override void OnJoinedRoom()
         {
             Debug.Log("Join Room");
+            photonModel.SetPlayerProperty("Score", 0);
             photonModel.SetPlayerProperty("PositionCount", PhotonNetwork.CurrentRoom.PlayerCount);
             CallPhotonListner(PlayerStatus.JOIN_ROOM);
             
@@ -98,6 +99,11 @@ namespace Multiplayer
         {
            // Debug.Log("room list updated");
             CallPhotonListner(roomList);
+        }
+        public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+        {
+            base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
+            CallPhotonListner(targetPlayer);
         }
         public override void OnLobbyStatisticsUpdate(List<TypedLobbyInfo> lobbyStatistics)
         {

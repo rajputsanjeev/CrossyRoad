@@ -4,15 +4,10 @@ using UnityEngine;
 
 namespace Crossyroad
 {
-    public interface IObjectPool
+    public interface IGameManager
     {
-        void AddToPool(GameObject gameObject);
+        void OnCountdownCompleted();
+        void UpdateScore();
     }
-
 }
-
-
-
-
-
 

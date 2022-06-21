@@ -57,9 +57,7 @@ namespace Crossyroad
             {
                 float disX = Mathf.Abs(initialPos.x - Input.mousePosition.x);
                 float disY = Mathf.Abs(initialPos.y - Input.mousePosition.y);
-                float x = 0;
-                float z = 0;
-
+               
                 if (disX > 0 || disY > 0)
                 {
                     if (disX > disY)

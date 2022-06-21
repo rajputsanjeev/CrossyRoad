@@ -1,86 +1,85 @@
-﻿using CrossyRoad;
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class UIPanelManager : MonoBehaviour
+namespace Crossyroad
 {
-    [SerializeField] private List<UIPanelComponent> m_PanelsList;
-
-    [Tooltip("Add a panel here if it will be on the scene from starting by default")]
-    [SerializeField] private UIPanelComponent m_LastActivePanel;
-    
-    private UIPanelComponent m_LastActiveScreen;
-
-    public static UIPanelManager Instance;
-    public List<UIPanelComponent> PanelList => m_PanelsList;
-    public Panel CurrentPanel => m_LastActivePanel.panelType;
-    public Panel CurrentScreen => m_LastActiveScreen.panelType;
-
-    public UIPanelComponent GetPanelFromType(Panel type)
+    public class UIPanelManager : MonoBehaviour
     {
-        return m_PanelsList.Find(x => x.panelType == type);
-    }
+        [SerializeField] private List<UIPanelComponent> m_PanelsList;
 
-    public int PanelCount => m_PanelsList.Count;
+        [Tooltip("Add a panel here if it will be on the scene from starting by default")]
+        [SerializeField] private UIPanelComponent m_LastActivePanel;
 
-    private void Awake()
-    {
-        Instance = this;
-        m_LastActiveScreen = m_LastActivePanel;
-    }
+        private UIPanelComponent m_LastActiveScreen;
 
-    private void OnEnable()
-    {
-        if (m_LastActivePanel != null)
+        public static UIPanelManager Instance;
+        public List<UIPanelComponent> PanelList => m_PanelsList;
+        public Panel CurrentPanel => m_LastActivePanel.panelType;
+        public Panel CurrentScreen => m_LastActiveScreen.panelType;
+
+        public UIPanelComponent GetPanelFromType(Panel type)
         {
-            // Show(m_LastActivePanel.panelType);
-        }
-    }
-
-    public void ShowPanel(Panel type, bool bol)
-    {
-        UIPanelComponent desiredPanel = m_PanelsList.Find(x => x.panelType == type);
-        desiredPanel.Show(bol);
-    }
-    public void Show(Panel type, bool isPopUp = false)
-    {
-        if (type == Panel.HOME && m_LastActivePanel.panelType == Panel.HOME)
-        {
-            return;
+            return m_PanelsList.Find(x => x.panelType == type);
         }
 
-        UIPanelComponent desiredPanel = m_PanelsList.Find(x => x.panelType == type);
-        if (desiredPanel != null)
-        {
-            Sequence sequence;
+        public int PanelCount => m_PanelsList.Count;
 
-            Debug.Log("false4");
-            sequence = DOTween.Sequence();
-            foreach (var item in m_PanelsList)
+        private void Awake()
+        {
+            Instance = this;
+            m_LastActiveScreen = m_LastActivePanel;
+        }
+
+        private void OnEnable()
+        {
+            if (m_LastActivePanel != null)
             {
-                Debug.Log("false5");
-                sequence.AppendCallback(() => item.Show(false));
+                // Show(m_LastActivePanel.panelType);
             }
-            sequence.AppendCallback(() => desiredPanel.Show(true));
-            sequence.Play();
-            m_LastActivePanel = desiredPanel;
-            m_LastActiveScreen = desiredPanel;
+        }
 
-            if (isPopUp)
+        public void ShowPanel(Panel type, bool bol)
+        {
+            UIPanelComponent desiredPanel = m_PanelsList.Find(x => x.panelType == type);
+            desiredPanel.Show(bol);
+        }
+        public void Show(Panel type, bool isPopUp = false)
+        {
+            if (type == Panel.HOME && m_LastActivePanel.panelType == Panel.HOME)
             {
-                desiredPanel.Show(true);
-                if (!desiredPanel.panelType.Equals(Panel.SETTINGS))
+                return;
+            }
+
+            UIPanelComponent desiredPanel = m_PanelsList.Find(x => x.panelType == type);
+            if (desiredPanel != null)
+            {
+                Sequence sequence;
+
+                Debug.Log("false4");
+                sequence = DOTween.Sequence();
+                foreach (var item in m_PanelsList)
                 {
-                    m_LastActivePanel = desiredPanel;
+                    Debug.Log("false5");
+                    sequence.AppendCallback(() => item.Show(false));
+                }
+                sequence.AppendCallback(() => desiredPanel.Show(true));
+                sequence.Play();
+                m_LastActivePanel = desiredPanel;
+                m_LastActiveScreen = desiredPanel;
+
+                if (isPopUp)
+                {
+                    desiredPanel.Show(true);
+                    if (!desiredPanel.panelType.Equals(Panel.SETTINGS))
+                    {
+                        m_LastActivePanel = desiredPanel;
+                    }
                 }
             }
-        }
 
-        if (m_LastActivePanel.panelType == type) return;
+            if (m_LastActivePanel.panelType == type) return;
+        }
     }
+
 }

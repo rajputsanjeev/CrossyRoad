@@ -59,7 +59,6 @@ namespace Crossyroad
         public bool IsMoving
         {
             get { return moving; }
-            set { moving = value; }
         }
 
         public void SetTarget()

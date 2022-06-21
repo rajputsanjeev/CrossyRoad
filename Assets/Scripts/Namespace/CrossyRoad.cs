@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CrossyRoad
+namespace Crossyroad
 {
     public enum Panel
     {

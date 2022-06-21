@@ -7,7 +7,8 @@ namespace Crossyroad
 {
     public class GamePlayView : UIPanelComponent
     {
-        public GameObject countDownPanel;
-        public CountdownTimer countdownTimer;
+        public CountdownPanel countdownTimer;
+        public GameObject content;
+        public GameObject leaderBoardPrefab;
     }
 }
