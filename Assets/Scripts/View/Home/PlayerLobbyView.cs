@@ -5,7 +5,7 @@ using TMPro;
 
 
 
-namespace Crossyroad
+namespace CrossyRoad
 {
     /// <summary>
     /// This class will be responsible to reveal player's information's listed inside a lobby

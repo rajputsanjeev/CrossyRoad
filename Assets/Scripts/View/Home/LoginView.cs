@@ -18,6 +18,7 @@ public class LoginView : MonoBehaviour
         if (string.IsNullOrEmpty(tMP_InputField.text))
             return;
 
+        GameUtil.IsMultiplayer = true;
         username = tMP_InputField.text;
         UserData.UserName = username;
         UserData.UserID = RandomStringGenerator(4);

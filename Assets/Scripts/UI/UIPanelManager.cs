@@ -2,7 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace Crossyroad
+namespace CrossyRoad
 {
     public class UIPanelManager : MonoBehaviour
     {

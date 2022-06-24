@@ -4,7 +4,7 @@ using CrossyRoad.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 
-namespace Crossyroad
+namespace CrossyRoad
 {
     public class ConnectRoomController : PhotonListener<PlayerStatus>
     {

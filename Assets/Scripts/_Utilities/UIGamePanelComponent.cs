@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using CrossyRoad.TileController.GameManager;
+using UnityEngine;
 
-namespace Crossyroad
+namespace CrossyRoad.TileController
 {
     public class UIGamePanelComponent : UIPanelComponent
     {
-        protected IGameManager gameEventListener;
+         protected IGameManager gameEventListener;
 
-    private void Awake()
+        private void Awake()
         {
             GameController.OnInit += Init;
         }

@@ -1,6 +1,6 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
-using Crossyroad;
+using CrossyRoad;
 using CrossyRoad;
 
 public class PhotonModel : PhotonBaseModel

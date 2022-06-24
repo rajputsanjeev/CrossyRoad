@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Crossyroad;
+using CrossyRoad;
 
 namespace CrossyRoad.Lobby
 {

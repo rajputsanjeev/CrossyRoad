@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Vector2 initialPos;
-    private Command jump;
     private Vector3 endPos;
 
     public bool canMove = false;

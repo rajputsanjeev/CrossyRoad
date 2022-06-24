@@ -1,5 +1,5 @@
 ﻿
-using Crossyroad;
+using CrossyRoad;
 using CrossyRoad;
 using ExitGames.Client.Photon;
 using Photon.Pun;
@@ -23,10 +23,11 @@ public class AcknowledgeHandler : RaiseEventListener
     public void AcknowledgeScenePlayer()
     {
         acknowledgeCnt++;
-        Debug.Log("scene cnt : ==========" + acknowledgeCnt);
+        Debug.Log("scene cnt : ==========" + acknowledgeCnt +" ismaster " + PhotonNetwork.LocalPlayer.IsMasterClient +" length "+ PhotonNetwork.PlayerList.Length);
 
-        if (acknowledgeCnt == PhotonNetwork.CurrentRoom.MaxPlayers && PhotonNetwork.LocalPlayer.IsMasterClient)
+        if (acknowledgeCnt == PhotonNetwork.PlayerList.Length && PhotonNetwork.LocalPlayer.IsMasterClient)
         {
+            Debug.Log("Start game ");
             acknowledgeCnt = 0;
             RaiseEvent(RaiseEventType.START_GAME, Photon.Realtime.ReceiverGroup.All);
             Destroy(this.gameObject);

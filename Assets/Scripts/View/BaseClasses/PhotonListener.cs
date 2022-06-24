@@ -1,30 +1,32 @@
-﻿using Crossyroad;
-
-public abstract class PhotonListener<T1> : Behaviour<View>
+﻿
+namespace CrossyRoad
 {
-    public static new PhotonListener<T1> Instance;
-    protected PhotonBaseController PhotonController => PhotonBaseController.Instance;
-
-    protected override void Awake()
+    public abstract class PhotonListener<T1> : Behaviour<View>
     {
-        base.Awake();
+        public static new PhotonListener<T1> Instance;
+        protected PhotonBaseController PhotonController => PhotonBaseController.Instance;
 
-        if(Instance == null)
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+        }
+
+        protected virtual void OnEnable()
         {
             Instance = this;
         }
+
+        protected virtual void OnDisable()
+        {
+        }
+
+        public abstract void OnPhotonEventExecuted(T1 data);
+
     }
-
-    protected virtual void OnEnable()
-    {
-        Instance = this;
-    }
-
-    protected virtual void OnDisable()
-    {
-    }
-
-    public abstract void OnPhotonEventExecuted(T1 data);
-
 }
 

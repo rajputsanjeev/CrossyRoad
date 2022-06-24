@@ -4,7 +4,7 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Crossyroad
+namespace CrossyRoad
 {
     public abstract class PhotonBaseController : MonoBehaviourPunCallbacks
     {

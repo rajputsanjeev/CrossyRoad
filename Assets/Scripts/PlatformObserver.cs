@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Crossyroad;
+using CrossyRoad;
 
 namespace ObserverPattern
 {
     //Wants to know when another object does something interesting 
     public abstract class Observer
     {
-        public abstract void OnNotify();
+        public abstract void OnAddToPool();
     }
 
-    public class Box : Observer
+    public class StaticPlatform : Observer
     {
         //The box gameobject which will do something
         GameObject boxObj;
@@ -29,6 +29,10 @@ namespace ObserverPattern
         /// </summary>
         private Transform cameraTransform;
 
+        /// <summary>
+        /// Box Own position
+        /// </summary>
+        private Transform objectTransform;
 
         /// <summary>
         /// All tiles of that platform
@@ -37,21 +41,25 @@ namespace ObserverPattern
 
         //Variable of car and water object Mover and get random Direction
         public bool randomizeValues = true;
-        public Direction direction;
+
         public float speed = 2.0f;
         public float interval = 6.0f;
         public float leftX = -20.0f;
         public float rightX = 20.0f;
 
-        private List<GameObject> generatedObjects = new List<GameObject>();
+        /// <summary>
+        /// Direction
+        /// </summary>
+        public Direction direction;
 
-        public Box(GameObject boxObj, PlatformEvents boxEvent , List<GameObject> tileList , Transform cameraTransform , IObjectPool objectPoolLisner)
+        public StaticPlatform(GameObject boxObj, PlatformEvents boxEvent , List<GameObject> tileList , Transform cameraTransform ,Transform objectTransform , IObjectPool objectPoolLisner)
         {
             this.boxObj = boxObj;
             this.boxEvent = boxEvent;
             this.tileList = tileList;
             this.cameraTransform = cameraTransform;
             this.objectPoolLisner = objectPoolLisner;
+            this.objectTransform = objectTransform;
         }
 
         //Get Random value
@@ -66,18 +74,20 @@ namespace ObserverPattern
         }
 
         //What the box will do if the event fits it (will always fit but you will probably change that on your own)
-        public override void OnNotify()
+        public override void OnAddToPool()
         {
-            Jump(boxEvent.GetJumpForce());
+            //Debug.Log("Notification");
+            CheckPosition();
         }
 
         //The box will always jump in this case
-        void Jump(float jumpForce)
+        void CheckPosition()
         {
-            //If the box is close to the ground
-            if (boxObj.transform.position.y < 0.55f)
+            if(Vector3.Distance(boxObj.transform.position,cameraTransform.position) > 20 && boxObj.transform.position.z < cameraTransform.position.z)
             {
-
+             //   Debug.Log("Addd");
+                objectPoolLisner.AddToPool(boxObj);
+                boxObj.SetActive(false);
             }
         }
     }

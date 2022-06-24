@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Crossyroad
+namespace CrossyRoad
 {
     public enum Panel
     {
@@ -44,8 +44,9 @@ namespace Crossyroad
         RELOAD_SCENE,
         ON_MASTER_CLENT_SWITCH,
         TOURNEMENT_MATCH,
-            MASTER_CLIENT_SWITCH
-    }
+        MASTER_CLIENT_SWITCH,
+        ON_PLAYER_DIE
+    } 
 
 
     public enum RaiseEventType
@@ -83,6 +84,22 @@ namespace Crossyroad
         LUCKY_EVENT_SELECTED,
         FIND_OPPONENT_TIMER_START,
         FIND_OPPONENT_TIMER_STOP
+    }
+
+    public enum TileType
+    {
+        GRASS,
+        RAILWAY,
+        CAR,
+        WATER
+    }
+    public enum Direction { LEFT = -1, RIGHT = 1 };
+
+    public enum RotateOver
+    {
+        X_AXIES,
+        Y_AXIES,
+        Z_AXIES
     }
 
 }

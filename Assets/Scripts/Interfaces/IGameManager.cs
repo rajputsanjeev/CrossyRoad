@@ -1,13 +1,18 @@
+using CrossyRoad.PlayerInstanceNamespace;
+using CrossyRoad.TileController;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Crossyroad
+namespace CrossyRoad
 {
     public interface IGameManager
     {
         void OnCountdownCompleted();
-        void UpdateScore();
+        PlayerInstance GetPlayerInstance(string playerName);
+        PlayerInstance GetPlayerInstance(int playerId);
+
+
     }
 }
 

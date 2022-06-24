@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbadcae6a5ef354f8c29451116eb475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMovable: 0
+  rigidbody: {fileID: 0}
   setting: {fileID: 11400000, guid: b1f9216419d55534f8ba2a984c303a4d, type: 2}
 --- !u!114 &6799892380227744886
 MonoBehaviour:

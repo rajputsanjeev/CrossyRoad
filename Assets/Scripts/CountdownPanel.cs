@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using System;
 using Photon.Pun.UtilityScripts;
+using CrossyRoad.TileController.GameManager;
 
-namespace Crossyroad
+namespace CrossyRoad.TileController
 {
     public class CountdownPanel : UIGamePanelComponent
     {
@@ -13,12 +14,14 @@ namespace Crossyroad
 
         [SerializeField] private int m_maxCountDown;
         [SerializeField] private TextMeshProUGUI m_CountdownText;
-        [SerializeField] private CountdownPhotonTimer photonTimer;
+        [SerializeField] public CountdownPhotonTimer photonTimer;
+
         private int lastTimeCount = 0;
         private bool isTimerFinish;
 
         private void OnEnable()
         {
+            gameEventListener = Singleton<GameController>.Instance;
             photonTimer.OnCountdownTimerHasExpired += CounterFinish;
             photonTimer.OnCountdownUpdated += OnCountdownUpdated;
         }
@@ -78,9 +81,10 @@ namespace Crossyroad
 
             isTimerFinish = true;
 
-            // Debug.Log("onCountDown Finish");
+             Debug.Log("onCountDown Finish");
             if (gameEventListener != null)
             {
+                Debug.Log("gameEventListener is not null");
                 gameEventListener.OnCountdownCompleted();
 
             }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb0d76dfc93e984b83d2a05c3aef352, type: 3}
+  m_Name: PlayerSetting
+  m_EditorClassIdentifier: 
+  timeForMove: 0.2
+  jumpHeight: 1
+  minX: -4
+  maxX: 4
+  leftRotation: -45
+  rightRotation: 90
+  elapsedTime: 0.20234899
+  xJumpDistance: 1.5

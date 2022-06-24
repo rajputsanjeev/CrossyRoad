@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Crossyroad
+namespace CrossyRoad.TileController
 {
     public class GamePlayView : UIPanelComponent
     {

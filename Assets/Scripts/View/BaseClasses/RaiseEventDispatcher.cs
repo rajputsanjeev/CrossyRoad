@@ -4,7 +4,7 @@ using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 
-namespace Crossyroad
+namespace CrossyRoad
 {
     public abstract class RaiseEventDispatcher<T1, T2> : Behaviour<T1, T2> where T1 : View
     {
