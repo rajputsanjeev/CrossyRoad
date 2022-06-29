@@ -7,6 +7,7 @@ using CrossyRoad.PlayerInputSystem;
 using Photon.Realtime;
 using CrossyRoad.PlayerInstanceNamespace;
 using CrossyRoard;
+using TMPro;
 
 namespace CrossyRoad.PhotonPlayerMovement
 {
@@ -14,6 +15,8 @@ namespace CrossyRoad.PhotonPlayerMovement
 
     public class PlayerMovement : RaiseEventSend
     {
+        public TextMeshProUGUI name;
+
         public bool isMovable;
 
         public static event Action<PlayerStatus> OnDie;
@@ -53,7 +56,8 @@ namespace CrossyRoad.PhotonPlayerMovement
             IplayerInput = new PlayerInput(setting , transform);
             moter = new PlayerMoter(IplayerInput, transform, setting, rigidbody, gameObject);
             playerInstance = Singleton<GameController>.Instance.GetPlayerInstance(view.Owner.ActorNumber);
-            RaiseEvent(RaiseEventType.PLAYER_SPAWN, ReceiverGroup.All);
+            name.text = playerInstance.playerName;
+            RaiseEvent(RaiseEventType.PLAYER_SPAWNED, ReceiverGroup.All);
         }
 
         protected void OnEnable()
@@ -80,13 +84,19 @@ namespace CrossyRoad.PhotonPlayerMovement
             if (!isMovable)
                 return;
 
-         //   Debug.Log("IsMoving " + IsMoving);
+             //Debug.Log("IsMoving " + IsMoving);
               moter.SetCurrentPosition();
               IplayerInput.ReadInput();
               IplayerInput.CalculateMousePosition();
               moter.SetTarget();
               moter.MovePlayer();
               moter.RotatePlayer();
+
+            if (IsMoving)
+            {
+                RaiseEvent(RaiseEventType.PLAYER_MOVE, ReceiverGroup.MasterClient);
+                MyEventArgs.UIEvents.PlayerMove.Dispatch(transform);
+            }
         }
 
         #endregion

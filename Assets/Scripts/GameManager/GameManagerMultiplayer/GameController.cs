@@ -7,7 +7,6 @@ using ExitGames.Client.Photon;
 using System;
 using System.Collections;
 using UnityEngine.UI;
-using CrossyRoad.TileController.CameraController;
 using CrossyRoad.PhotonPlayerMovement;
 using CrossyRoad.PlayerInstanceNamespace;
 using CrossyRoard;
@@ -69,12 +68,24 @@ namespace CrossyRoad.TileController.GameManager
         #endregion
 
         #region Spawn Player
-        private void Spawn()
+        private void SpawnCamera()
+        {
+            Debug.Log("Player Camera");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.InstantiateRoomObject(Path.Combine("Camera", "CameraController"), Vector3.zero, Quaternion.Euler(37f,0,0));
+                RaiseEvent(RaiseEventType.SPAWN_PLAYER, ReceiverGroup.All);
+                RaiseEvent(RaiseEventType.CAMERA_SPAWN, ReceiverGroup.MasterClient);
+
+            }
+        }
+        private void SpawnPlayer()
         {
             Debug.Log("Player Spawn");
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Chicken"), GetTransform().position, Quaternion.identity);
-            MyEventArgs.UIEvents.initTileManager.Dispatch(PhotonNetwork.IsMasterClient);
+           GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Chicken"), GetTransform().position, Quaternion.identity);
+            player.name = PhotonNetwork.LocalPlayer.NickName;
         }
+
         #endregion
 
         #region Get and set PlayerTransform
@@ -117,12 +128,14 @@ namespace CrossyRoad.TileController.GameManager
             base.OnRaiseEventReceived(eventData);
             switch (raiseEventType)
             {
-                case RaiseEventType.START_GAME:
-                    Debug.Log(" START_GAME");
-                      Spawn();
+                case RaiseEventType.SPAWN_CAMERA:
+                    Debug.Log(" SPAWN_CAMERA ");
+                      SpawnCamera();
                     break;
-
-               case RaiseEventType.PLAYER_SPAWN:
+                case RaiseEventType.SPAWN_PLAYER:
+                    SpawnPlayer();
+                    break;
+                case RaiseEventType.PLAYER_SPAWNED:
                       PlayerSpawn();
                     break;
 

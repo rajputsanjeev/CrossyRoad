@@ -28,6 +28,8 @@ namespace CrossyRoad.CamerMotor
         {
             cameraTransform.position =  offset;
             playerOffset = cameraTransform.position - playerTransform.position;
+            Debug.Log("playerOffset.z " + playerOffset.z);
+            cameraSetting.distance = Mathf.Abs(playerOffset.z);
         }
 
         public void UpdateLateUpdate()

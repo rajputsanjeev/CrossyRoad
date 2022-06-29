@@ -12,6 +12,7 @@ public class PhotonBaseModel : MonoBehaviour
         RoomProperties roomProperties = GetRoomProperties(roomType);
 
         RoomOptions options = new RoomOptions();
+        options.CustomRoomProperties = new Hashtable { { "CameraPos", 0  } };
         options.PlayerTtl = 1000;
         options.EmptyRoomTtl = 0;
         options.MaxPlayers = 2;

@@ -53,9 +53,12 @@ namespace CrossyRoad
     {
         NONE,
         ACKNOWLEDGE_SCENE_LOAD,
-        START_GAME,
-        PLAYER_SPAWN,
+        SPAWN_CAMERA,
+        CAMERA_SPAWN,
+        SPAWN_PLAYER,
+        PLAYER_SPAWNED,
         ALL_PLAYER_SPAWN,
+        PLAYER_MOVE,
 
         RANDOM_PLAYER_READY,
         CHALLENGE_REQUEST,

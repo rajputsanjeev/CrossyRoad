@@ -53,6 +53,7 @@ MonoBehaviour:
   interval: 6
   leftX: -20
   rightX: 20
+  photonView: {fileID: 0}
   minPosition: {x: 0, y: 0, z: 0}
   maxPosition: {x: 0, y: 0, z: 0}
   gridSize: {x: 1, y: 1, z: 3}
@@ -88,7 +89,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6771641641615213418}

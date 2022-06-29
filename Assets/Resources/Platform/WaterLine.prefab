@@ -9916,6 +9916,7 @@ MonoBehaviour:
   interval: 6
   leftX: -20
   rightX: 20
+  photonView: {fileID: 0}
 --- !u!114 &8674592858128574990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9932,7 +9933,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2949826780878521885}

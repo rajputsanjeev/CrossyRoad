@@ -81,7 +81,7 @@ namespace CrossyRoad.PlayerMotor
             moving = true;
             m_playerSetting.elapsedTime = 0;
             m_rigidbody.isKinematic = true;
-            MyEventArgs.UIEvents.PlayerMove.Dispatch(m_transform);
+          
         }
 
         public void RotatePlayer()
