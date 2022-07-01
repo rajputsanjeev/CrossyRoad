@@ -9856,9 +9856,9 @@ GameObject:
   m_Component:
   - component: {fileID: 481024}
   - component: {fileID: 6542760}
-  - component: {fileID: 3810630257305313760}
   - component: {fileID: 8674592858128574990}
   - component: {fileID: 2949826780878521885}
+  - component: {fileID: 4600927761132826979}
   m_Layer: 0
   m_Name: WaterLine
   m_TagString: Platform
@@ -9900,23 +9900,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 39, y: 0.375, z: 1}
   m_Center: {x: 0, y: -0.1875, z: 0}
---- !u!114 &3810630257305313760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 186100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77037f2f7b6d3a4cb2e431bf99a8e4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  interval: 6
-  leftX: -20
-  rightX: 20
-  photonView: {fileID: 0}
 --- !u!114 &8674592858128574990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9973,6 +9956,23 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &4600927761132826979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e11f5687dcdf8c4995a6bd3f20350de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  interval: 6
+  leftX: -20
+  rightX: 20
+  photonView: {fileID: 8674592858128574990}
 --- !u!1 &196276
 GameObject:
   m_ObjectHideFlags: 0

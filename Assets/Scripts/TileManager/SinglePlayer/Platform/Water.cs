@@ -1,7 +1,7 @@
 using CrossyRoard;
 using UnityEngine;
 
-namespace CrossyRoad.TileController
+namespace CrossyRoad.TileController.SinglePlayer.Platform
 {
     public class Water : Platform
     {

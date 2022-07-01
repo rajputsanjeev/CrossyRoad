@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using CrossyRoad.PhotonPlayerMovement;
 using CrossyRoad.PlayerInstanceNamespace;
 using CrossyRoard;
-using CrossyRoad.TileController.MultiPlayer;
+using CrossyRoad.TileController.MultiPlayer.Platform;
 
 namespace CrossyRoad.TileController.GameManager
 {
@@ -233,10 +233,6 @@ namespace CrossyRoad.TileController.GameManager
                     break;
             }
                 
-        }
-        public void UpdateScore(int score)
-        {
-            throw new NotImplementedException();
         }
         #endregion
 

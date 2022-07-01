@@ -102,10 +102,10 @@ MonoBehaviour:
   currentPlayerTransform: {fileID: 0}
   cameraSetting: {fileID: 11400000, guid: 91519e815c43c6440926db3dd7b6e8b7, type: 2}
   offset: {x: 7.5, y: 30, z: -15}
-  playerTransforms: []
   playerOffset: {x: 0, y: 0, z: 0}
   targetTransform: {fileID: 0}
   photonView: {fileID: 6236766239347645395}
+  playerCount: 0
 --- !u!114 &6236766239347645394
 MonoBehaviour:
   m_ObjectHideFlags: 0

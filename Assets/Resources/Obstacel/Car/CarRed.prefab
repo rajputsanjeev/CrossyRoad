@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 6523196}
   - component: {fileID: 7030707545880544949}
   - component: {fileID: 3862938775876383889}
+  - component: {fileID: 6671608736307034422}
   m_Layer: 0
   m_Name: CarRed
   m_TagString: Untagged
@@ -351,6 +352,26 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &6671608736307034422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5238b6ae3182de4c981cd26394114a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedX: 5
+  direction: 0
+  leftX: -8
+  rightX: 8
+  rotationFixed: 2
+  quaternion: {x: 0, y: 0, z: 0, w: 0}
+  leftDir: -180
+  rightDir: 180
 --- !u!1 &174976
 GameObject:
   m_ObjectHideFlags: 0

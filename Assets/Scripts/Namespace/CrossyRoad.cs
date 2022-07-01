@@ -105,4 +105,21 @@ namespace CrossyRoad
         Z_AXIES
     }
 
+    public enum Obstacle
+    { 
+     BLUE_CAR,
+     PINK_CAR,
+     GRAY_CAR,
+     RED_CAR,
+     GREEN_CAR,
+     YELLOW_CAR,
+     RED_TRUCK,
+     BLUE_TRUCK,
+     BLUE_WAN,
+     TREE,
+     WATER
+    
+    }
+
+
 }

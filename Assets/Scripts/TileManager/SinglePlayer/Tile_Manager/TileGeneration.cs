@@ -21,19 +21,27 @@ namespace CrossyRoad {
             return line;
         }
 
-        public List<GameObject> GetTileObstacal(List<GameObject> tileList , Transform parent)
+        public List<GameObject> GetTileObstacal(List<ObstacelType> tileList , Transform parent)
         {
             if (tileList.Count == 0)
             {
                 return null;
             }
             Debug.Log("tile list Count " + tileList.Count);
+
             List<GameObject> list = new List<GameObject>();
-           int random = Random.Range(0, tileList.Count-1) ;
-            GameObject tileObstacel = Instantiate(tileList[random]);
-            tileObstacel.SetActive(false);
-            tileObstacel.transform.SetParent(parent, false);
-            list.Add(tileObstacel);
+
+             int randomCount = Random.Range(3, 4);
+
+            for (int i = 0;i < randomCount; i++)
+            {
+                int random = Random.Range(0, tileList.Count - 1);
+                GameObject tileObstacel = Instantiate(tileList[random].obstacel);
+                tileObstacel.SetActive(false);
+                tileObstacel.transform.SetParent(parent, false);
+                list.Add(tileObstacel);
+            }
+       
             return list;
         }
 
@@ -49,9 +57,18 @@ namespace CrossyRoad {
     public class Tile
     {
         public TileType tileType;
+        public string tileName;
         public GameObject tileObject;
-        public List<GameObject> tileList;
+        public List<ObstacelType> obstacelTypes = new List<ObstacelType>();
     }
+    [System.Serializable]
+    public class ObstacelType
+    {
+        public string obstacelName;
+        public Obstacle obstacle;
+        public GameObject obstacel;
+    }
+
 
 }
 

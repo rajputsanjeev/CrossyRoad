@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7582002824488896706}
   - component: {fileID: 3125872182098205455}
   - component: {fileID: 1104186246997635066}
-  - component: {fileID: 8817314523386050303}
+  - component: {fileID: 3128796335661618060}
   m_Layer: 0
   m_Name: RoadLine
   m_TagString: Platform
@@ -201,7 +201,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &8817314523386050303
+--- !u!114 &3128796335661618060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,14 +210,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 177662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e84b3b5cb1e7c44e93fc98aa2fb0d64, type: 3}
+  m_Script: {fileID: 11500000, guid: ede9b911d2c28f04eb94e9989140ad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 3125872182098205455}
   speed: 2
   interval: 6
   leftX: -20
   rightX: 20
-  photonView: {fileID: 0}
+  obstacelTypes: []
+  tileType: 0
 --- !u!1 &184340
 GameObject:
   m_ObjectHideFlags: 0

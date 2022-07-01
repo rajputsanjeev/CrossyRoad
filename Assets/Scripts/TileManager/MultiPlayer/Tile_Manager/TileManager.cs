@@ -1,14 +1,10 @@
 using UnityEngine;
-using ObserverPattern;
 using Photon.Pun;
-using CrossyRoard;
-using System;
-using Photon.Realtime;
 using ExitGames.Client.Photon;
-using System.Collections.Generic;
 using System.IO;
+using ObserverPattern.Multiplayer;
 
-namespace CrossyRoad.TileController.MultiPlayer
+namespace CrossyRoad.TileController.MultiPlayer.Platform
 {
     public class TileManager : RaiseEventListener
     {
@@ -54,17 +50,32 @@ namespace CrossyRoad.TileController.MultiPlayer
                 object[] instantiationData = { force , postion,scale};
 
                 //Spawn Object
-                GameObject tileObject = PhotonNetwork.InstantiateRoomObject(Path.Combine("Platform", tile.tileObject.name), Vector3.zero, Quaternion.identity, 0, instantiationData);
+                GameObject tileObject = PhotonNetwork.InstantiateRoomObject(Path.Combine("Platform", tile.tileName), Vector3.zero, Quaternion.identity, 0, instantiationData);
 
-                StaticPlatform box = new StaticPlatform(tileObject, cameraTransform, tileObject.transform);
+                PlatformObserver box = new PlatformObserver(tileObject, cameraTransform);
                 subject.AddObserver(box);
+
+                if(tileObject.GetComponent<Platform>() != null)
+                {
+                    Platform platform = tileObject.GetComponent<Platform>();
+                    platform.SetObstacelType(tile.obstacelTypes, tile.tileType);
+                }
+                else
+                {
+                    Grass platform = tileObject.GetComponent<Grass>();
+                    platform.SetObstacelType(tile.obstacelTypes, tile.tileType);
+                }
             }
         }
 
 
         public void NotifyTile(float maxDistance)
         {
-             subject.Notify();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log("Notify");
+                subject.Notify();
+            }
         }
 
         #endregion

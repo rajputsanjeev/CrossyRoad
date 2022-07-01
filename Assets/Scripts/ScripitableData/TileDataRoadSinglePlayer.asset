@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29672b042c6c47d46b9e8fb772413f70, type: 3}
+  m_Name: TileDataRoadSinglePlayer
+  m_EditorClassIdentifier: 
+  tiles:
+  - tileType: 0
+    tileObject: {fileID: 126440, guid: d2853a44e65cddc41a6ddfcaedd54ae3, type: 3}
+    obstacelTypes:
+    - obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+    - obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+    - obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+    - obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+  - tileType: 2
+    tileObject: {fileID: 177662, guid: d3af063da7e4fc643ae1751d131fcdf8, type: 3}
+    obstacelTypes:
+    - obstacle: 0
+      obstacel: {fileID: 168452, guid: 833854e083d917d4591e2e02fb7d62bc, type: 3}
+    - obstacle: 1
+      obstacel: {fileID: 106230, guid: 6a76892de67435a48998c89200357143, type: 3}
+    - obstacle: 2
+      obstacel: {fileID: 168144, guid: 8ccc220b5091e0b448e0a8859d998cb9, type: 3}
+    - obstacle: 3
+      obstacel: {fileID: 164652, guid: 83f6e85b4afc35e4fba38925f5188aeb, type: 3}
+    - obstacle: 4
+      obstacel: {fileID: 141488, guid: ebbad1929cabe0c4995778ef1874aa32, type: 3}
+    - obstacle: 5
+      obstacel: {fileID: 148512, guid: 96ceb93e5ca9d85469767cb0ca4bfa6b, type: 3}
+    - obstacle: 6
+      obstacel: {fileID: 135068, guid: 33274865df7cf994abea51c60f0671da, type: 3}
+    - obstacle: 7
+      obstacel: {fileID: 146224, guid: 55fd5c0ac94be9646a54a2bbcd01e550, type: 3}
+    - obstacle: 8
+      obstacel: {fileID: 183302, guid: cfc536fc56703b945a292fa7164d90b3, type: 3}
+  minZ: 3
+  lineAhead: 10
+  lineBehind: 5

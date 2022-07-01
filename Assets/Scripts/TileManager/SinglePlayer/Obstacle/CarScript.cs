@@ -1,28 +1,18 @@
 ﻿using UnityEngine;
 using CrossyRoard;
-using Photon.Pun;
 
-namespace CrossyRoad.TileController
+namespace CrossyRoad.TileController.SinglePlayer.Platform
 {
     public class CarScript : Movement
     {
-        private PhotonView photonView;
 
         protected override void Awake()
         {
-            photonView = GetComponent<PhotonView>();
             base.Awake();
         }
 
         protected override void Update()
         {
-            if (GameUtil.IsMultiplayer) 
-            {
-                if (!photonView.IsMine)
-                    return;
-            }
-           
-
             base.Update();
         }
 

@@ -50,7 +50,7 @@ namespace CrossyRoad.PhotonPlayerMovement
             rigidbody = GetComponent<Rigidbody>();
 
             //Transfer my position to camera
-            MyEventArgs.UIEvents.cameraTransforms.Dispatch(transform, PhotonNetwork.IsMasterClient);
+            MyEventArgs.UIEvents.cameraTransforms.Dispatch(view,transform, PhotonNetwork.IsMasterClient);
 
             IgameManager = Singleton<GameController>.Instance;
             IplayerInput = new PlayerInput(setting , transform);
@@ -63,13 +63,16 @@ namespace CrossyRoad.PhotonPlayerMovement
         protected void OnEnable()
         {
             MyEventArgs.UIEvents.StartGame.AddListener(TimerEnd);
+            MyEventArgs.UIEvents.updateScore.AddListener(AddScore);
+
         }
 
         protected void OnDisable()
         {
             MyEventArgs.UIEvents.StartGame.RemoveListener(TimerEnd);
-
+            MyEventArgs.UIEvents.updateScore.RemoveListener(AddScore);
         }
+
 
         private void TimerEnd(bool end)
         {

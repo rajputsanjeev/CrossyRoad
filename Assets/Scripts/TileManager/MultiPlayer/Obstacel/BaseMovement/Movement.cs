@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-namespace CrossyRoad
+namespace CrossyRoad.TileController.MultiPlayer.Platform
 {
     public class Movement : MonoBehaviour
     {
@@ -18,10 +17,11 @@ namespace CrossyRoad
         public Quaternion quaternion;
         public float leftDir;
         public float rightDir;
+        private PhotonView photonView;
 
         protected virtual void Awake()
         {
-
+            photonView = GetComponent<PhotonView>();
         }
 
         protected virtual void Start()
@@ -72,14 +72,10 @@ namespace CrossyRoad
         // Update is called once per frame
         protected virtual void Update()
         {
+            if (!photonView.IsMine)
+                return;
 
             transform.position += new Vector3(speedX * Time.deltaTime, 0.0f, 0.0f);
-            if (direction == Direction.LEFT && transform.position.x < leftX || direction == Direction.RIGHT && transform.position.x > rightX)
-            {
-                gameObject.SetActive(false);
-                platform.GetObjectFromPool();
-            }
-
         }
 
         protected virtual void OnTriggerEnter()

@@ -38,15 +38,6 @@ namespace CrossyRoad.PlayerSinglePlayer.GameManager
 
 
         #region Die Action
-        public void OnDieFunction(PlayerStatus playerStatus)
-        {
-            switch (playerStatus) 
-            {
-                case PlayerStatus.ON_PLAYER_DIE:
-                    Debug.Log("Dieeeeee");
-                    break;
-            }
-        }
 
         public void UpdateScore(int score)
         {

@@ -15,10 +15,11 @@ namespace CrossyRoad.Multiplayer.CameraController
         [SerializeField] public Transform currentPlayerTransform;
         [SerializeField] private CameraSetting cameraSetting;
         [SerializeField] private Vector3 offset;
-        [SerializeField] private List<Transform> playerTransforms = new List<Transform>();
+        [SerializeField] private List<PhotonPlayerTransform> playerTransforms = new List<PhotonPlayerTransform>();
         [SerializeField] private Vector3 playerOffset;
         [SerializeField] private Transform targetTransform;
         [SerializeField] private PhotonView photonView;
+        [SerializeField] private int playerCount;
 
         protected override void Awake()
         {
@@ -52,25 +53,78 @@ namespace CrossyRoad.Multiplayer.CameraController
             isMovable = end;
         }
 
-        private void PlayerTransforms(Transform playerTransform , bool isMaster)
+        private void PlayerTransforms(PhotonView photonView, Transform playerTransform , bool isMaster)
         {
-            playerTransforms.Add(playerTransform);
-            currentPlayerTransform = playerTransforms[int.Parse(PhotonNetwork.CurrentRoom.CustomProperties["CameraPos"].ToString())];
+            PhotonPlayerTransform photonPlayerTransform = new PhotonPlayerTransform();
+            photonPlayerTransform.playerTransform = playerTransform;
+            photonPlayerTransform.photonView = photonView;
+            playerTransforms.Add(photonPlayerTransform);
+            currentPlayerTransform = playerTransforms[int.Parse(PhotonNetwork.CurrentRoom.CustomProperties["CameraPos"].ToString())].playerTransform;
+
+            List<PhotonPlayerTransform> temp = new List<PhotonPlayerTransform>();
+
+            playerCount++;
+            if (playerCount == PhotonNetwork.PlayerList.Length)
+            {
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    for (int i = 0; i < playerTransforms.Count; i++)
+                    {
+                        if (playerTransforms[i].photonView.IsMine)
+                        {
+                            temp.Add(playerTransforms[i]); 
+                        }
+                    }
+
+                    for (int i = 0; i < playerTransforms.Count; i++)
+                    {
+                        if (!playerTransforms[i].photonView.IsMine)
+                        {
+                            temp.Add(playerTransforms[i]);
+                        }
+                    }
+
+                }
+                else
+                {
+
+                    for (int i = 0; i < playerTransforms.Count; i++)
+                    {
+                        if (!playerTransforms[i].photonView.IsMine)
+                        {
+                            temp.Add(playerTransforms[i]);
+                        }
+                    }
+
+                    for (int i = 0; i < playerTransforms.Count; i++)
+                    {
+                        if (playerTransforms[i].photonView.IsMine)
+                        {
+                            temp.Add(playerTransforms[i]);
+                        }
+                    }
+                }
+
+                playerTransforms= temp;
+
+                playerCount = 0;
+            }
         }
 
         private void ChangeCameraTargert(Transform changeTransform)
         {
-            Debug.Log("ChangeCameraTargert ");
-            Transform minTransform = playerTransforms[0];
-            for (int i = 0; i < playerTransforms.Count; i++)
+            int index = 0;
+            Transform minTransform = playerTransforms[0].playerTransform;
+            for (int i = 1; i < playerTransforms.Count; i++)
             {
-                if(minTransform.position.z < playerTransforms[i].position.z)
+                if(minTransform.position.z > playerTransforms[i].playerTransform.position.z)
                 {
-                    minTransform = playerTransforms[i];
+                    minTransform = playerTransforms[i].playerTransform;
+                    index = i;
                 }
             }
 
-            int index = playerTransforms.FindIndex(x => x = minTransform);
+            Debug.Log("index " + index);
             ExitGames.Client.Photon.Hashtable h = new ExitGames.Client.Photon.Hashtable();
             h["CameraPos"] = index;
             PhotonNetwork.CurrentRoom.SetCustomProperties(h);
@@ -114,10 +168,17 @@ namespace CrossyRoad.Multiplayer.CameraController
             Debug.Log(" CameraPOs " + (int)PhotonNetwork.CurrentRoom.CustomProperties["CameraPos"]);
             if (data.ContainsKey("CameraPos"))
             {
-                currentPlayerTransform = playerTransforms[(int)PhotonNetwork.CurrentRoom.CustomProperties["CameraPos"]];
+                currentPlayerTransform = playerTransforms[(int)PhotonNetwork.CurrentRoom.CustomProperties["CameraPos"]].playerTransform;
             }
         }
     }
+
+    public class PhotonPlayerTransform 
+    {
+      public Transform playerTransform;
+      public PhotonView photonView;
+    }
+
 
 }
 

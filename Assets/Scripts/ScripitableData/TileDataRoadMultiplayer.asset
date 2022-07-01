@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29672b042c6c47d46b9e8fb772413f70, type: 3}
+  m_Name: TileDataRoadMultiplayer
+  m_EditorClassIdentifier: 
+  tiles:
+  - tileType: 0
+    tileName: GrassLine
+    tileObject: {fileID: 0}
+    obstacelTypes:
+    - obstacelName: Tree_1
+      obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+    - obstacelName: Tree_1
+      obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+    - obstacelName: Tree_1
+      obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+    - obstacelName: Tree_1
+      obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
+  - tileType: 2
+    tileName: RoadLine
+    tileObject: {fileID: 0}
+    obstacelTypes:
+    - obstacelName: Car_1
+      obstacle: 0
+      obstacel: {fileID: 0}
+    - obstacelName: Car_2
+      obstacle: 1
+      obstacel: {fileID: 0}
+    - obstacelName: Car_3
+      obstacle: 2
+      obstacel: {fileID: 0}
+  minZ: 3
+  lineAhead: 10
+  lineBehind: 5

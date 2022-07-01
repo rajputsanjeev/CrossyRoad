@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using CrossyRoard;
-using Photon.Pun;
 
-namespace CrossyRoad
+namespace CrossyRoad.TileController.SinglePlayer.Platform
 {
     public class TrunkFloatingScript : Movement
     {
@@ -32,13 +30,11 @@ namespace CrossyRoad
         private bool sinking;
         private float elapsedTime;
         private Rigidbody playerBody;
-        private PhotonView photonView;
 
         public bool IsCollide { get; private set; }
 
         protected override void Awake()
         {
-            photonView = GetComponent<PhotonView>();
             base.Awake();
         }
 
@@ -49,12 +45,6 @@ namespace CrossyRoad
 
         protected override void Update()
         {
-            if (GameUtil.IsMultiplayer)
-            {
-                if (!photonView.IsMine)
-                    return;
-            }
-
             base.Update();  
 
             elapsedTime += Time.deltaTime;

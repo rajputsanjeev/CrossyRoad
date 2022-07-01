@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  tileGeneration: {fileID: 11400000, guid: be21b2aad27e7a747836dcdc57ce0bb8, type: 2}
+  tileGeneration: {fileID: 11400000, guid: 4a2ed622723f8c74d9b557d618e877cb, type: 2}
   spawnPoint: {fileID: 1789988002}
   tileParent: {fileID: 365924635}
   obstacelParent: {fileID: 531612561}
@@ -1401,7 +1401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1799118014

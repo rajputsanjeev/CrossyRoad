@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CrossyRoad
+namespace CrossyRoad.TileController.SinglePlayer.Platform
 {
-    public class Grass : Platform
+    public class Grass : MonoBehaviour
     {
-        private IObjectPool objectPoolLisner;
-        private Transform playerTransform;
         public Vector3 minPosition;
         public Vector3 maxPosition;
         public Vector3 gridSize = new Vector3(1, 1, 3);
@@ -18,29 +16,20 @@ namespace CrossyRoad
         public bool destroyWhenDestroyed = true;
 
         private List<GameObject> generatedObjects;
+        public List<ObstacelType> obstacelTypes;
 
-
-
-        protected override void Awake()
+        protected  void OnEnable()
         {
-            base.Awake();
-
-           
         }
 
-        protected override void OnEnable()
+        public void SetObstacelType(List<ObstacelType> obstacelTypes, TileType tileType)
         {
-            GrassObject();
+            this.obstacelTypes = obstacelTypes;
+            GrassObject(obstacelTypes , tileType);
         }
 
 
-        public void SetPlayerTransform(Transform playerTransform, IObjectPool objectPool)
-        {
-            this.playerTransform = playerTransform;
-            this.objectPoolLisner = objectPool;
-        }
-
-        public void GrassObject()
+        public void GrassObject(List<ObstacelType> obstacelTypes, TileType tileType)
         {
             generatedObjects = new List<GameObject>();
 
@@ -66,9 +55,5 @@ namespace CrossyRoad
             }
         }
 
-        protected override void OnCollisionEnter(Collision collision)
-        {
-            base.OnCollisionEnter(collision);
-        }
     }
 }

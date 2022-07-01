@@ -110,8 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedX: 5
   direction: 0
-  leftX: -8
-  rightX: 8
+  leftX: -16
+  rightX: 16
   rotationFixed: 2
   quaternion: {x: -90, y: 0, z: 0, w: 0}
   leftDir: -90

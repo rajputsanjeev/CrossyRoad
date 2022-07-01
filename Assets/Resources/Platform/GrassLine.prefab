@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 471664}
-  - component: {fileID: 8057982930126857095}
   - component: {fileID: 9216794818394495672}
   - component: {fileID: 730555176003286339}
   - component: {fileID: 6771641641615213418}
+  - component: {fileID: 1656787445253796886}
   m_Layer: 0
   m_Name: GrassLine
   m_TagString: Platform
@@ -37,29 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8057982930126857095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9687aa6bd142f64fb8d2b9cb8328fa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  interval: 6
-  leftX: -20
-  rightX: 20
-  photonView: {fileID: 0}
-  minPosition: {x: 0, y: 0, z: 0}
-  maxPosition: {x: 0, y: 0, z: 0}
-  gridSize: {x: 1, y: 1, z: 3}
-  density: 0.12
-  relative: 1
-  destroyWhenDestroyed: 1
 --- !u!65 &9216794818394495672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,6 +106,26 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &1656787445253796886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798200e8ccf329448b83e752a4a847ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPosition: {x: 0, y: 0, z: 0}
+  maxPosition: {x: 0, y: 0, z: 0}
+  gridSize: {x: 1, y: 1, z: 3}
+  density: 0.12
+  relative: 1
+  destroyWhenDestroyed: 1
+  photonView: {fileID: 730555176003286339}
+  obstacelTypes: []
 --- !u!1 &126894
 GameObject:
   m_ObjectHideFlags: 0

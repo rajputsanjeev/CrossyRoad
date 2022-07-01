@@ -1,8 +1,9 @@
 using UnityEngine;
 using ObserverPattern;
-using Photon.Pun;
+using System.Collections;
+using ObserverPattern.SinglePlayer;
 
-namespace CrossyRoad.TileController.Singleplayer
+namespace CrossyRoad.TileController.SinglePlayer.Platform
 {
     public class TileManager : MonoBehaviour, IObjectPool
     {
@@ -17,6 +18,7 @@ namespace CrossyRoad.TileController.Singleplayer
         private void Awake()
         {
             InitSinglePlayer();
+            StartCoroutine(StartObserving());
         }
 
         private void InitSinglePlayer()
@@ -26,6 +28,13 @@ namespace CrossyRoad.TileController.Singleplayer
             {
                 tileMotor.SpawnTileAtZero(this);
             }
+        }
+
+        private IEnumerator StartObserving()
+        {
+            yield return new WaitForSeconds(2);
+            subject.Notify();
+            StartCoroutine(StartObserving());
         }
 
         private void Update()

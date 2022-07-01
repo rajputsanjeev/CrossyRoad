@@ -14,26 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - tileType: 0
-    tileObject: {fileID: 126440, guid: d2853a44e65cddc41a6ddfcaedd54ae3, type: 3}
-    tileList:
-    - {fileID: 137330, guid: 332aaec2dfb6c32489834c91c1c7c3fc, type: 3}
-    - {fileID: 117376, guid: f454750896077254c85812253d5dc4e2, type: 3}
+    tileObject: {fileID: 126440, guid: 1eb80a4aad0574a40bc6949b47ce9b8d, type: 3}
+    obstacelTypes:
+    - obstacle: 9
+      obstacel: {fileID: 137330, guid: 22fc4fc749715a8439e02e378a3e5ed2, type: 3}
   - tileType: 2
-    tileObject: {fileID: 177662, guid: d3af063da7e4fc643ae1751d131fcdf8, type: 3}
-    tileList:
-    - {fileID: 168452, guid: 01256546b6844bb41acc699f38a541af, type: 3}
-    - {fileID: 106230, guid: 66e90d418d4265348945d4acb338fc31, type: 3}
-    - {fileID: 168144, guid: d1d4dedfa9ac7e848b8fd101896c18a0, type: 3}
-    - {fileID: 164652, guid: 9bd1b27d5f778ed4a895df3cddc07424, type: 3}
-    - {fileID: 141488, guid: 8748feac88fc15d4ca01666a807ac1ef, type: 3}
-    - {fileID: 148512, guid: 92072655e33dcad4081f973a35e6a06c, type: 3}
-    - {fileID: 135068, guid: 60aa64213e6a4744293d052e98fb6bb3, type: 3}
-    - {fileID: 146224, guid: be3bc177c326ce549b3029268bf14d12, type: 3}
-    - {fileID: 183302, guid: 8fabdd1a6ebcf88458e10661011b042b, type: 3}
-  - tileType: 3
-    tileObject: {fileID: 186100, guid: c458ee52e60e32643acf769053339dd7, type: 3}
-    tileList:
-    - {fileID: 2917428874544958175, guid: 1bec7025dcd7e184cb7428ffb123afce, type: 3}
+    tileObject: {fileID: 177662, guid: a919f6af05c88d545b7fc64ca4b02d49, type: 3}
+    obstacelTypes:
+    - obstacle: 0
+      obstacel: {fileID: 168452, guid: 833854e083d917d4591e2e02fb7d62bc, type: 3}
+    - obstacle: 1
+      obstacel: {fileID: 106230, guid: 6a76892de67435a48998c89200357143, type: 3}
+    - obstacle: 2
+      obstacel: {fileID: 168144, guid: 8ccc220b5091e0b448e0a8859d998cb9, type: 3}
+    - obstacle: 3
+      obstacel: {fileID: 164652, guid: 83f6e85b4afc35e4fba38925f5188aeb, type: 3}
+    - obstacle: 4
+      obstacel: {fileID: 141488, guid: ebbad1929cabe0c4995778ef1874aa32, type: 3}
+    - obstacle: 5
+      obstacel: {fileID: 148512, guid: 96ceb93e5ca9d85469767cb0ca4bfa6b, type: 3}
+    - obstacle: 6
+      obstacel: {fileID: 135068, guid: 33274865df7cf994abea51c60f0671da, type: 3}
+    - obstacle: 7
+      obstacel: {fileID: 146224, guid: 55fd5c0ac94be9646a54a2bbcd01e550, type: 3}
+    - obstacle: 8
+      obstacel: {fileID: 183302, guid: cfc536fc56703b945a292fa7164d90b3, type: 3}
   minZ: 3
   lineAhead: 10
   lineBehind: 5
